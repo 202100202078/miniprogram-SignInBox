@@ -34,7 +34,10 @@
     "userConfirmedBundleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": [],
-    "minifyWXSS": true
+    "minifyWXSS": true,
+    "useCompilerPlugins": [
+      "sass"
+    ]
   },
   "appid": "wx5087199686fa7210",
   "projectname": "quickstart-wx-cloud",

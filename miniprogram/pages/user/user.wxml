@@ -1,2 +1,5 @@
-<!--pages/user/user.wxml-->
-<text>pages/user/user.wxml</text>
+<!-- pages/user/user.wxml -->
+<view class="userinfo">
+  <image src="../../images/default-avatar.png" mode="" class="avatar"/>
+  <text class="username">我是用户名</text>
+</view>
