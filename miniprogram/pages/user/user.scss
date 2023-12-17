@@ -1,3 +1,14 @@
 .userinfo {
-  margin-top: 100rpx;
+  display: flex;
+  align-items: center;
+  margin-top: 116rpx;
+  .avatar {
+    margin-left: 46rpx;
+    width: 240rpx;
+  }
+  .username {
+    margin-left: 62rpx;
+    font-size: 48rpx;
+    font-weight: bold;
+  }
 }
