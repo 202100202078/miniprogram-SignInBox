@@ -1,10 +1,31 @@
 {
   "pages": [
-    "pages/user/user"
+    "pages/user/user",
+    "pages/index/index"
   ],
+  "tabBar": {
+    "borderStyle": "black",
+    "color": "#000000",
+    "selectedColor": "#7F10A8",
+    "backgroundColor": "#FCFCFD",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "签到",
+        "iconPath": "./images/icon/index.png",
+        "selectedIconPath": "./images/icon/index-active.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "iconPath": "./images/icon/user.png",
+        "selectedIconPath": "./images/icon/user-active.png"
+      }
+    ]
+  },
   "window": {
     "backgroundColor": "#F6F6F6",
-    "backgroundTextStyle": "light",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#F6F6F6",
     "navigationBarTitleText": "标题",
     "navigationBarTextStyle": "black"
