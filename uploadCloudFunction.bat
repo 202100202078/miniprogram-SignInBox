@@ -1,0 +1,1 @@
+"D:\aSoftware\微信开发工具\微信web开发者工具\cli.bat" cloud functions deploy --e cloud1-3g2zij3fa7d1e597 --n quickstartFunctions --r --project "D:\MyProject\HTMLCSSJavaScript\小程序开发\miniprogram-SignIn" --report_first --report
