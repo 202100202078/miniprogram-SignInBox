@@ -32,7 +32,7 @@
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
     "userConfirmedBundleSwitch": false,
-    "packNpmManually": false,
+    "packNpmManually": true,
     "packNpmRelationList": [],
     "minifyWXSS": true,
     "useCompilerPlugins": [

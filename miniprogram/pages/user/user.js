@@ -5,9 +5,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    btnStyleObj: 
+      `width: 320rpx;
+      height: 108rpx;
+      border-radius: 30rpx;
+      font-size: 48rpx;`,
+    isShowCourse: false
+    
   },
-
+  triggle() {
+    this.setData({
+      isShowCourse:!this.data.isShowCourse
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
