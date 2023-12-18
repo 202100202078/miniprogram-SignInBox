@@ -1,6 +1,19 @@
 <!-- pages/user/user.wxml -->
 <view class="userinfo">
-  <image src="../../images/default-avatar.png" mode="widthFix" class="avatar"/>
+  <van-image
+    use-loading-slot
+    round
+    width="240rpx"
+    height="240rpx"
+    src="https://img.yzcdn.cn/vant/cat.jpeg"
+    class="avatar"
+    fit="cover"
+    slot="loading"
+  >
+    <van-loading color="#7232dd" slot="loading" type="spinner" size="20" vertical>  
+     加载中...
+    </van-loading>
+  </van-image>
   <text class="username">用户名</text>
 </view>
 <view class="btns">
@@ -16,29 +29,38 @@
         <view class="info">周小林|C-5-454</view>
       </view>
     </view>
-    <view class="right">
-      <view class="date">2023/12/11</view>
-      <view class="time">20:47:33</view>
-      <view class="info">出勤</view>
-    </view>
+      <view class="right" hidden="{{isShowCourse}}">
+        <view class="date">2023/12/11</view>
+        <view class="time">20:47:33</view>
+        <view class="info">出勤</view>
+      </view>
   </view>
   <view class="cell">
     <view class="left">
       <view class="title">软件工程</view>
       <view class="label">
-        <view class="info1">第1-18周|第5-6节</view>
-        <view class="info2">周小林|C-5-454</view>
+        <view class="info">第1-18周|第5-6节</view>
+        <view class="info">周小林|C-5-454</view>
       </view>
     </view>
-    <view class="right">
-      <view class="date">2023/12/11</view>
-      <view class="time">20:47:33</view>
-      <view class="info">出勤</view>
-    </view>
+      <view class="right" hidden="{{isShowCourse}}">
+        <view class="date">2023/12/11</view>
+        <view class="time">20:47:33</view>
+        <view class="info">出勤</view>
+      </view>
   </view>
-
-
-
-
-
+  <view class="cell">
+    <view class="left">
+      <view class="title">软件工程</view>
+      <view class="label">
+        <view class="info">第1-18周|第5-6节</view>
+        <view class="info">周小林|C-5-454</view>
+      </view>
+    </view>
+      <view class="right" hidden="{{isShowCourse}}">
+        <view class="date">2023/12/11</view>
+        <view class="time">20:47:33</view>
+        <view class="info">出勤</view>
+      </view>
+  </view>
 </view>

@@ -33,6 +33,8 @@
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents",
   "usingComponents": {
-    "van-button": "@vant/weapp/button/index"
+    "van-button": "@vant/weapp/button/index",
+    "van-image": "@vant/weapp/image/index",
+    "van-loading": "@vant/weapp/loading/index"
   }
 }
