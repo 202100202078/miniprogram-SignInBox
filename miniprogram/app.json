@@ -2,7 +2,8 @@
   "pages": [
     "pages/user/user",
     "pages/course/detail",
-    "pages/index/index"
+    "pages/index/index",
+    "pages/features/features"
   ],
   "tabBar": {
     "borderStyle": "black",
@@ -12,6 +13,12 @@
     "list": [
       {
         "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "./images/icon/home.png",
+        "selectedIconPath": "./images/icon/home-active.png"
+      },
+      {
+        "pagePath": "pages/features/features",
         "text": "签到",
         "iconPath": "./images/icon/index.png",
         "selectedIconPath": "./images/icon/index-active.png"
@@ -36,6 +43,13 @@
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",
     "van-image": "@vant/weapp/image/index",
-    "van-loading": "@vant/weapp/loading/index"
+    "van-loading": "@vant/weapp/loading/index",
+    "van-row": "@vant/weapp/row/index",
+    "van-col": "@vant/weapp/col/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-picker": "@vant/weapp/picker/index"
+
   }
 }

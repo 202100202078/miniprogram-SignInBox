@@ -1,38 +1,13 @@
-// pages/user/user.js
+// pages/features/features.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    btnStyleObj: 
-      `width: 320rpx;
-      height: 108rpx;
-      border-radius: 30rpx;
-      font-size: 48rpx;`,
-    isShowCourse: false,
-    isTeacher:true
-    
+
   },
-  triggle(e) {
-    const choice = e.target.dataset.choice
-    if(choice==='record' && this.data.isShowCourse) {
-      this.setData({
-        isShowCourse:!this.data.isShowCourse
-      })
-    }else if(choice==='course' && !this.data.isShowCourse){
-      this.setData({
-        isShowCourse:!this.data.isShowCourse
-      })
-    }
-  },
-  showDetail() {
-    if(!this.data.isTeacher) return;
-    // 携带当前课程id作为参数进入detail页面
-    wx.navigateTo({
-      url: '/pages/course/detail',
-    })
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -45,7 +20,7 @@ Page({
    */
   onReady() {
     wx.setNavigationBarTitle({
-      title: '我的',
+      title: '签到',
     })
   },
 

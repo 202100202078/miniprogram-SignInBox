@@ -1,2 +1,44 @@
 <!--pages/index/index.wxml-->
-<text>pages/index/index.wxml</text>
+
+<view class="btns">
+  <van-button type="warning" size="large" round bind:tap="triggerIdentity">{{!isTeacher?'切换为老师':'切换为学生'}}</van-button>
+  <!-- <view class="btns-inner"> -->
+    <block wx:if="{{!isTeacher}}">
+      <van-button type="info" size="large" round>加入课程</van-button>
+    </block>
+    <block wx:else>
+      <van-button 
+      type="info" 
+      size="large" 
+      round bind:tap="createSemester"
+      >创建学期</van-button>
+
+      <van-popup 
+      show="{{ showSemester }}" 
+      bind:close="onCloseSemester" 
+      position="bottom"
+      custom-style="height: 40%;" 
+      round>
+        <van-picker
+          show-toolbar
+          title="创建学期"
+          columns="{{ semesterColumns }}" 
+          bind:change="onChangeSemester" 
+          loading="{{isLoading}}"
+          />
+      </van-popup>
+
+      <van-button type="info" size="large" round>编辑学期</van-button>
+    </block>
+  <!-- </view> -->
+</view>
+
+<view class="main">
+  <van-cell-group title="2022秋" inset>
+    <van-cell title="课程名" value="课程简介" />
+  </van-cell-group>
+  
+  <van-cell-group title="2023秋" inset>
+    <van-cell title="单元格" value="课程简介" />
+  </van-cell-group>
+</view>
