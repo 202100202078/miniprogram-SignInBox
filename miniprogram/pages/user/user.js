@@ -10,13 +10,21 @@ Page({
       height: 108rpx;
       border-radius: 30rpx;
       font-size: 48rpx;`,
-    isShowCourse: false
+    isShowCourse: false,
+    isTeacher:true
     
   },
-  triggle() {
-    this.setData({
-      isShowCourse:!this.data.isShowCourse
-    })
+  triggle(e) {
+    const choice = e.target.dataset.choice
+    if(choice==='record' && this.data.isShowCourse) {
+      this.setData({
+        isShowCourse:!this.data.isShowCourse
+      })
+    }else if(choice==='course' && !this.data.isShowCourse){
+      this.setData({
+        isShowCourse:!this.data.isShowCourse
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载
