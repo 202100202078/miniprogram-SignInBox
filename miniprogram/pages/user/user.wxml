@@ -21,7 +21,7 @@
   <van-button color="#7232dd" plain="{{isShowCourse}}" custom-style="{{btnStyleObj}}" bind:tap="triggle" data-choice="record">记录</van-button>
 </view>
 <view class="cellList">
-  <view class="cell" wx:for="{{6}}" wx:key="index">
+  <view class="cell" wx:for="{{6}}" wx:key="index" bind:tap="showDetail">
     <view class="left">
       <view class="title">软件工程</view>
       <view class="label">
@@ -30,9 +30,17 @@
       </view>
     </view>
     <view class="right" hidden="{{isShowCourse}}">
-      <view class="date">2023/12/11</view>
-      <view class="time">20:47:33</view>
-      <view class="info">出勤</view>
+      <block wx:if="{{!isTeacher}}">
+        <view class="date-stu">2023/12/11</view>
+        <view class="time-stu">20:47:33</view>
+        <view class="info-stu">出勤</view>
+      </block>
+      <block wx:else>
+        <view class="date-tea">2023/12/11</view>
+        <view class="time-tea">20:47:33</view>
+        <view class="info1-tea">出勤：10人</view>
+        <view class="info2-tea">缺勤：5人</view>
+      </block>
     </view>
   </view>
 </view>

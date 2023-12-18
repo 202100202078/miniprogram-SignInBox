@@ -1,27 +1,4 @@
-.userinfo {
-  display: flex;
-  align-items: center;
-  margin-top: 116rpx;
-  .avatar {
-    margin-left: 46rpx;
-    width: 240rpx;
-  }
-  .username {
-    margin-left: 62rpx;
-    font-size: 48rpx;
-    font-weight: bold;
-  }
-}
-
-.btns {
-  margin-top: 86rpx;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
 .cellList {
-  margin-top: 54rpx;
   .cell {
     padding: 14rpx;
     display: flex;
