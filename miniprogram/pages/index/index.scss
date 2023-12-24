@@ -6,4 +6,51 @@
 
 .main {
   margin-top: 26rpx;
+  padding: 0 26rpx;
+  .semester:not(:first-child) {
+    margin-top: 36rpx;
+  }
+  .semester {
+    .title {
+      padding: 0 16rpx 10rpx 16rpx;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .semester-name {
+        font-size: 28rpx;
+      }
+      .edit {
+        text-decoration: underline;
+        color: rgb(63, 61, 61);
+      }
+    }
+    .cell-group {
+      padding: 16rpx;
+      background-color: #fff;
+      border-radius: 30rpx;
+      .cell:not(:first-child) {
+        margin-top: 16rpx;
+      }
+    }
+  }
+}
+
+.popup-title {
+  height: 90rpx;
+  line-height: 90rpx;
+  background-color: #EAE6EE;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.212);
+  text-align: center;
+}
+
+.popup-main {
+  .popup-btn {
+    height: 100rpx;
+    line-height: 100rpx;
+    text-align: center;
+    color: #9c4bec;
+  }
+  .popup-btn:last-child {
+    color: red;
+  }
 }

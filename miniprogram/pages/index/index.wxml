@@ -35,15 +35,33 @@
   <!-- </view> -->
 </view>
 
+<van-popup 
+  show="{{ showEditSemester }}" 
+  bind:close="onCloseEditSemester" 
+  position="bottom"
+  custom-style="height: 390rpx;" 
+  round
+  closeable
+  >
+  <view class="popup-title">2012年秋</view>
+  <view class="popup-main">
+    <view class="popup-btn">添加课程</view>
+    <view class="popup-btn">重命名</view>
+    <view class="popup-btn">删除学期</view>
+  </view>
+</van-popup>
+
 <view class="main">
-  <view class="semester">
+  <view class="semester" wx:for="{{semesterAndCourseData}}" wx:key="semesterId" wx:for-item="semester">
     <view class="title">
-      <text class="semester-name">学期名</text>
-      <text class="edit">编辑</text>
+      <text class="semester-name">{{semester.semesterName}}</text>
+      <text class="edit" bind:tap="editSemester">编辑</text>
+
     </view>
     <view class="cell-group">
-      <view class="cell">内容</view>
-      <view class="cell">内容</view>
+      <view class="cell" wx:for="{{semester.courses}}" wx:key="courseId" wx:for-item="course">
+        {{course.courseName}}
+      </view>
     </view>
   </view>
 </view>

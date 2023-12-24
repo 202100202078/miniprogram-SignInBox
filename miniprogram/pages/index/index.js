@@ -14,14 +14,43 @@ Page({
    * 页面的初始数据
    */
   data: {
+    semesterAndCourseData: [
+      {
+        semesterId: 0,
+        semesterName: '2023秋',
+        courses: [
+          {
+            courseId: 0,
+            courseName: '测试0',
+          },
+          {
+            courseId: 1,
+            courseName: '测试1',
+          },
+          {
+            courseId: 2,
+            courseName: '测试2',
+          },
+        ]
+      },
+      {
+        semesterId: 1,
+        semesterName: '2023春',
+        courses: [
+          {
+            courseId: 0,
+            courseName: '测试0',
+          },
+          {
+            courseId: 1,
+            courseName: '测试1',
+          },
+        ]
+      },
+    ],
     isTeacher:true,
-    semester: {
-      2023: ['春','秋'],
-      2022: ['春1','秋'],
-      2021: ['春2','秋'],
-      2020: ['春3','秋'],
-    },
     showSemester:false,
+    showEditSemester:false,
     semesterColumns: [
       {
         values: Object.keys(semester),
@@ -72,6 +101,15 @@ Page({
       semesterKeyValue:value
     })
     this.onCloseSemester()
+  },
+  // 编辑学期
+  editSemester() {
+    wx.hideTabBar()
+    this.setData({ showEditSemester: true });
+  },
+  onCloseEditSemester() {
+    this.setData({ showEditSemester: false });
+    wx.showTabBar()
   },
   /**
    * 生命周期函数--监听页面加载
