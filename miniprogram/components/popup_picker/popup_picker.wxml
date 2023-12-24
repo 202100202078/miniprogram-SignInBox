@@ -1,0 +1,4 @@
+<!--components/popup_picker/popup_picker.wxml-->
+<van-popup show="{{ showSemester }}" bind:close="onCloseSemester" position="bottom" custom-style="height: 40%;" round>
+  <van-picker show-toolbar title="创建学期" columns="{{ semesterColumns }}" default-index="{{ 0 }}" bind:change="onChangeSemester" bind:cancel="onCancelSemester" bind:confirm="onConfirmSemester" loading="{{isLoading}}" />
+</van-popup>
