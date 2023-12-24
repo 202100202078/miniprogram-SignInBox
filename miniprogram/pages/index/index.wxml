@@ -43,20 +43,21 @@
   round
   closeable
   >
-  <view class="popup-title">2012年秋</view>
+  <view class="popup-title">{{curSemester}}</view>
   <view class="popup-main">
     <view class="popup-btn">添加课程</view>
     <view class="popup-btn">重命名</view>
-    <view class="popup-btn">删除学期</view>
+    <view class="popup-btn" bind:tap="deleteSemester">删除学期</view>
   </view>
 </van-popup>
+
+<van-dialog id="van-dialog" />
 
 <view class="main">
   <view class="semester" wx:for="{{semesterAndCourseData}}" wx:key="semesterId" wx:for-item="semester">
     <view class="title">
       <text class="semester-name">{{semester.semesterName}}</text>
-      <text class="edit" bind:tap="editSemester">编辑</text>
-
+      <text class="edit" bind:tap="editSemester" data-sname="{{semester.semesterName}}">编辑</text>
     </view>
     <view class="cell-group">
       <view class="cell" wx:for="{{semester.courses}}" wx:key="courseId" wx:for-item="course">

@@ -1,5 +1,6 @@
 // pages/index/index.js
 // import Toast from '@vant/weapp/toast/toast';
+import Dialog from '@vant/weapp/dialog/dialog';
 
 const semester = {
   2023: ['春','秋'],
@@ -62,6 +63,7 @@ Page({
         defaultIndex: 0,
       },
     ],
+    curSemester:'',
     semesterKeyValue:[],
     isLoading:false
   },
@@ -103,13 +105,31 @@ Page({
     this.onCloseSemester()
   },
   // 编辑学期
-  editSemester() {
+  editSemester(event) {
+    // console.log(event.target.dataset.sname);
     wx.hideTabBar()
-    this.setData({ showEditSemester: true });
+    this.setData({ 
+      showEditSemester: true,
+      curSemester: event.target.dataset.sname
+     });
   },
   onCloseEditSemester() {
     this.setData({ showEditSemester: false });
     wx.showTabBar()
+  },
+  //删除学期 
+  deleteSemester() {
+    // 弹出确认框
+    Dialog.confirm({
+      title: '删除学期',
+      message: '警告：该学期下的所有课程内容也将全部删除？',
+    })
+      .then(() => {
+        // on confirm
+      })
+      .catch(() => {
+        // on cancel
+      });
   },
   /**
    * 生命周期函数--监听页面加载
