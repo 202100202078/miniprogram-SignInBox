@@ -55,7 +55,7 @@
   }
 }
 
-.rename-title {
+.rename-title,.addcourse-title {
   display: flex;
   align-items: center;
   background-color: #EAE6EE;
@@ -63,23 +63,25 @@
   height: 100rpx;
 }
 
-.rename-main {
+.rename-main,.addcourse-main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  .rename-main-input {
+  .rename-main-input,.addcourse-main-input {
     width: 90%;
-    padding: 36rpx;
-    .rename-main-inputbgc {
+    padding: 26rpx;
+    .rename-main-inputbgc,.addcourse-main-inputbgc {
       padding-left: 36rpx;
       background-color: rgba(128, 128, 128, 0.548);
       border-radius: 26rpx;
       .my-input {
         height: 100rpx;
+        width: 550rpx;
       }
     }
+
   }
-  .rename-main-btn {
+  .rename-main-btn,.addcourse-main-btn {
     margin-bottom: 36rpx;
   }
 }

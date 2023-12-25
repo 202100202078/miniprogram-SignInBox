@@ -45,9 +45,42 @@
   >
   <view class="popup-title">{{curSemester[1]}}</view>
   <view class="popup-main">
-    <view class="popup-btn">添加课程</view>
+    <view class="popup-btn" bind:tap="addCourse">添加课程</view>
     <view class="popup-btn" bind:tap="renameFn">重命名</view>
     <view class="popup-btn" bind:tap="deleteSemester">删除学期</view>
+  </view>
+</van-popup>
+
+
+<van-popup 
+  show="{{ showAddCourse }}" 
+  bind:close="onCloseAddCourse" 
+  closeable
+  custom-style="width:90%;"
+  >
+  <view class="addcourse-title">
+    <text>重命名</text>
+  </view>
+  <view class="addcourse-main">
+    <view class="addcourse-main-input">
+      <view class="addcourse-main-inputbgc">
+        <input type="text" class="my-input" placeholder="课程名称，限20字符" value="{{courseNameInput}}" bindinput="addcourseNameInput"/>
+      </view>
+    </view>
+    <view class="addcourse-main-input">
+      <view class="addcourse-main-inputbgc" style="height:300rpx;padding-top: 30rpx;">
+        <textarea 
+        value="{{courseDescInput}}" 
+        bindinput="addcourseDescInput"
+        class="my-input"
+        placeholder="课程简介，限400字符（选填）" 
+        style="height: 300rpx;"
+        />
+      </view>
+    </view>
+    <view class="addcourse-main-btn">
+      <van-button color="#7232dd" bind:tap="addcourseConfirm">添加课程</van-button>
+    </view>
   </view>
 </van-popup>
 

@@ -24,14 +24,17 @@ Page({
           {
             courseId: 0,
             courseName: '测试0',
+            courseDesc: ''
           },
           {
             courseId: 1,
             courseName: '测试1',
+            courseDesc: ''
           },
           {
             courseId: 2,
             courseName: '测试2',
+            courseDesc: ''
           },
         ]
       },
@@ -42,10 +45,12 @@ Page({
           {
             courseId: 0,
             courseName: '测试0',
+            courseDesc: ''
           },
           {
             courseId: 1,
             courseName: '测试1',
+            courseDesc: ''
           },
         ]
       },
@@ -54,6 +59,9 @@ Page({
     showSemester:false,
     showEditSemester:false,
     showRename:false,
+    showAddCourse: false,
+    courseDescInput:'',
+    courseNameInput:'',
     semesterColumns: [
       {
         values: Object.keys(semester),
@@ -174,6 +182,58 @@ Page({
       ['semesterAndCourseData['+index+'].semesterName']:this.data.renameInput,
       renameInput:'',
       showRename:false
+    })
+  },
+  // 关闭添加课程弹层
+  onCloseAddCourse() {
+    this.setData({
+      showAddCourse:false,
+      courseNameInput: '',
+      courseDescInput: '',
+    })
+  },
+  // 显示添加课程弹窗
+  addCourse() {
+    this.setData({
+      showAddCourse:true,
+      showEditSemester:false,
+    })
+  },
+  // 随视图更新数据
+  addcourseNameInput(e) {
+    this.setData({
+      courseNameInput:e.detail.value
+    })
+  },
+  // 随视图更新数据
+  addcourseDescInput(e) {
+    this.setData({
+      courseDescInput:e.detail.value
+    })
+  },
+  //确认添加课程
+  addcourseConfirm() {
+    // {
+    //   courseId: 2,
+    //   courseName: '测试2',
+    //   courseDesc: ''
+    // }
+    const curId = this.data.curSemester[0]
+    const index = this.data.semesterAndCourseData.findIndex(ele=>ele.semesterId===curId)
+    const temp = this.data.semesterAndCourseData[index].courses
+    
+    const newEle = {
+      courseId: temp.length,
+      courseName: this.data.courseNameInput,
+      courseDesc: this.data.courseDescInput
+    }
+    // console.log(curId);
+    // console.log(index);
+    // console.log(temp);
+    // console.log(newEle);
+    this.setData({
+      ['semesterAndCourseData['+index+'].courses']:[...temp,newEle],
+      showAddCourse:false
     })
   },
   /**

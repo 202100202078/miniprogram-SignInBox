@@ -6,6 +6,14 @@
   box-sizing: border-box;
 } 
 
+textarea {
+  resize: none;
+}
+
+textarea::placeholder {
+  color: #dddddd;
+}
+
 button {
   background: initial;
 }
