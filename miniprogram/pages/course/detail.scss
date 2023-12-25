@@ -1,20 +1,14 @@
 .cellList {
   .cell {
-    padding: 14rpx;
+    padding: 14rpx 36rpx;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #ffffff;
     border: 1px solid #000000bb;
     .left {
-      .title {
-        margin-bottom: 10rpx;
-        font-size: 32rpx;
-        font-weight: bold;
-      }
-      .info {
-        font-size: 28rpx;
-      }
+      font-size: 48rpx;
+      font-weight: bold;
     }
     .right {
       text-align: center;

@@ -1,6 +1,7 @@
 // pages/index/index.js
 // import Toast from '@vant/weapp/toast/toast';
 import Dialog from '@vant/weapp/dialog/dialog';
+import Toast from '@vant/weapp/toast/toast';
 
 const semester = {
   2023: ['春','秋'],
@@ -52,6 +53,7 @@ Page({
     isTeacher:true,
     showSemester:false,
     showEditSemester:false,
+    showRename:false,
     semesterColumns: [
       {
         values: Object.keys(semester),
@@ -63,7 +65,8 @@ Page({
         defaultIndex: 0,
       },
     ],
-    curSemester:'',
+    renameInput:'',
+    curSemester:[],
     semesterKeyValue:[],
     isLoading:false
   },
@@ -110,8 +113,9 @@ Page({
     wx.hideTabBar()
     this.setData({ 
       showEditSemester: true,
-      curSemester: event.target.dataset.sname
+      curSemester: [event.target.dataset.sid,event.target.dataset.sname]
      });
+     
   },
   onCloseEditSemester() {
     this.setData({ showEditSemester: false });
@@ -126,10 +130,48 @@ Page({
     })
       .then(() => {
         // on confirm
+        // 删除当前学期
+        const newdata = this.data.semesterAndCourseData.filter((val)=>val.semesterId!=this.data.curSemester[0])
+        this.setData({
+          semesterAndCourseData:newdata
+        })
+        Toast.success('删除成功');
+        this.onCloseEditSemester()
       })
       .catch(() => {
         // on cancel
       });
+  },
+  // 点击重命名
+  renameFn() {
+    this.onCloseEditSemester()
+    this.setData({
+      showRename:true
+    })
+  },
+  // 关闭重命名弹出层
+  onCloseRename() {
+    this.setData({
+      showRename:false
+    })
+    this.setData({
+      renameInput: ''
+    })
+  },
+  // 输入rename文本框
+  onRenameInput(event) {
+    // console.log(event.detail.value);
+    // 优化需要防抖(待实现)
+    this.setData({
+      renameInput: event.detail.value
+    })
+  },
+  //确认重命名
+  renameConfirm() {
+    const curId = this.data.curSemester[0]
+    const found = this.data.semesterAndCourseData.find((ele)=>ele.semesterId===curId)
+    console.log(found);
+    found.semesterName = this.data.renameInput
   },
   /**
    * 生命周期函数--监听页面加载

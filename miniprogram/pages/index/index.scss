@@ -54,3 +54,32 @@
     color: red;
   }
 }
+
+.rename-title {
+  display: flex;
+  align-items: center;
+  background-color: #EAE6EE;
+  padding-left: 36rpx;
+  height: 100rpx;
+}
+
+.rename-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .rename-main-input {
+    width: 90%;
+    padding: 36rpx;
+    .rename-main-inputbgc {
+      padding-left: 36rpx;
+      background-color: rgba(128, 128, 128, 0.548);
+      border-radius: 26rpx;
+      .my-input {
+        height: 100rpx;
+      }
+    }
+  }
+  .rename-main-btn {
+    margin-bottom: 36rpx;
+  }
+}

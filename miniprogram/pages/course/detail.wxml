@@ -1,11 +1,7 @@
 <view class="cellList">
   <view class="cell" wx:for="{{6}}" wx:key="index">
     <view class="left">
-      <view class="title">软件工程</view>
-      <view class="label">
-        <view class="info">第1-18周|第5-6节</view>
-        <view class="info">周小林|C-5-454</view>
-      </view>
+      汤姆逊
     </view>
     <view class="right" hidden="{{isShowCourse}}">
       <block wx:if="{{!isTeacher}}">
