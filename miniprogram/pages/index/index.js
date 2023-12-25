@@ -152,9 +152,7 @@ Page({
   // 关闭重命名弹出层
   onCloseRename() {
     this.setData({
-      showRename:false
-    })
-    this.setData({
+      showRename:false,
       renameInput: ''
     })
   },
@@ -169,9 +167,14 @@ Page({
   //确认重命名
   renameConfirm() {
     const curId = this.data.curSemester[0]
-    const found = this.data.semesterAndCourseData.find((ele)=>ele.semesterId===curId)
-    console.log(found);
-    found.semesterName = this.data.renameInput
+    // console.log(curId);
+    const index = this.data.semesterAndCourseData.findIndex(ele=>ele.semesterId===curId)
+    // console.log(index);
+    this.setData({
+      ['semesterAndCourseData['+index+'].semesterName']:this.data.renameInput,
+      renameInput:'',
+      showRename:false
+    })
   },
   /**
    * 生命周期函数--监听页面加载
