@@ -183,6 +183,7 @@ Page({
       renameInput:'',
       showRename:false
     })
+    Toast.success('操作成功');
   },
   // 关闭添加课程弹层
   onCloseAddCourse() {
@@ -235,6 +236,7 @@ Page({
       ['semesterAndCourseData['+index+'].courses']:[...temp,newEle],
       showAddCourse:false
     })
+    Toast.success('操作成功');
   },
   /**
    * 生命周期函数--监听页面加载
