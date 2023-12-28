@@ -16,7 +16,6 @@ Page({
       font-size: 48rpx;`,
     isShowCourse: false,
     isTeacher:true
-    
   },
   triggle(e) {
     const choice = e.target.dataset.choice
@@ -37,19 +36,52 @@ Page({
       url: '/pages/course/detail',
     })
   },
-  // observers:{
-  //   'hasUserInfo':function(newValue) {
-  //     console.log(newValue);
-  //   }
-  // },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
     this.storeBindings = createStoreBindings(this,{
       store,
-      fields: ['userInfo','hasUserInfo']
+      fields: ['userInfo','hasUserInfo','role']
     })
+    wx.cloud.callFunction({
+      name:'quickstartFunctions',
+      data: {
+        type: 'getOpenId'
+      },
+    }).then(res=> {
+      console.log(res);
+    })
+    // wx.login({
+    //   success: (res) => {
+    //     wx.cloud.callFunction({
+    //       name:'login',
+    //       data:{
+    //         code:res.code
+    //       }
+    //     }).then(res=>{
+    //       console.log(res);
+    //     })
+    //   },
+    // })
+
+    // wx.login({
+    //   success: (res) => {
+    //     //回传服务器
+    //   },
+    // })
+    // wx.cloud.callFunction({
+    //   // 云函数名称
+    //   name: 'createUser',
+    //   // 传给云函数的参数
+    //   data: {
+        
+    //   },
+    // })
+    // .then(res => {
+    //   console.log(res.result) // 3
+    // })
+    // .catch(console.error)
   },
 
   /**
@@ -59,6 +91,22 @@ Page({
     wx.setNavigationBarTitle({
       title: '我的',
     })
+    // console.log(this.data.userInfo);
+    // console.log(this.data.role);
+    // wx.cloud.callFunction({
+    //   // 云函数名称
+    //   name: 'createUser',
+    //   // 传给云函数的参数
+    //   data: {
+    //     avatarUrl:this.data.userInfo.avatarUrl,
+    //     uname:this.data.userInfo.nickName,
+    //     role:this.data.role
+    //   },
+    // })
+    // .then(res => {
+    //   console.log(res.result)
+    // })
+    // .catch(console.error)
   },
 
   /**

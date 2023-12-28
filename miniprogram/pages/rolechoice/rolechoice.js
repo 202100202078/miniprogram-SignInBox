@@ -21,7 +21,7 @@ Page({
       success: (res) => {
         this.setUserInfo(res.userInfo)
         this.updateHasUserInfo(true)
-        console.log(res.userInfo);
+        // console.log(res.userInfo);
         // console.log(res.userInfo);
         // 跳转到用户页
         wx.switchTab({
