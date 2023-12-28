@@ -32,8 +32,13 @@
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
     "userConfirmedBundleSwitch": false,
-    "packNpmManually": true,
-    "packNpmRelationList": [],
+    "packNpmManually": false,
+    "packNpmRelationList": [
+      {
+        "packageJsonPath": "./package.json",
+        "miniprogramNpmDistDir": "./node_modules"
+      }
+    ],
     "minifyWXSS": true,
     "useCompilerPlugins": [
       "sass"

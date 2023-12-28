@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/rolechoice/rolechoice",
     "pages/user/user",
     "pages/course/detail",
     "pages/index/index",

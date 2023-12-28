@@ -1,7 +1,9 @@
 // app.js
+// import {createStoreBindings} from 'mobx-miniprogram-bindings'
+// import {store} from './store/store'
+
 App({
   onLaunch: function () {
-    
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力');
     } else {
@@ -28,11 +30,12 @@ App({
     //   fail: console.error
     // })
 
-    wx.cloud.callFunction({
-      name:"get"
-    }).then(res=>{
-      console.log(res.result);
-    })
+    // wx.cloud.callFunction({
+    //   name:"get"
+    // }).then(res=>{
+    //   console.log(res.result);
+    // })
+
     this.globalData = {};
   }
 });

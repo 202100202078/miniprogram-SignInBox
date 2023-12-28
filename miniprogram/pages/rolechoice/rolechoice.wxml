@@ -1,0 +1,5 @@
+<!--pages/rolechoice/rolechoice.wxml-->
+<view class="my-container">
+  <button class="btn" bind:tap="toUserPage" data-myrole="teacher">我是老师</button>
+  <button class="btn" bind:tap="toUserPage" data-myrole="student">我是学生</button>
+</view>

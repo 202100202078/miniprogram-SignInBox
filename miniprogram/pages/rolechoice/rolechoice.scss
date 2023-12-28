@@ -1,0 +1,16 @@
+/* pages/rolechoice/rolechoice.wxss */
+.my-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  .btn {
+    width: 500rpx;
+    height: 500rpx;
+    line-height: 500rpx;
+    text-align: center;
+    border: 1px solid #000;
+    border-radius: 50%;
+  }
+}
