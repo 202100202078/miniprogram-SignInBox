@@ -5,7 +5,7 @@
     round
     width="240rpx"
     height="240rpx"
-    src="https://img.yzcdn.cn/vant/cat.jpeg"
+    src="{{userInfo.avatarUrl}}"
     class="avatar"
     fit="cover"
     slot="loading"
@@ -14,7 +14,7 @@
      加载中...
     </van-loading>
   </van-image>
-  <text class="username">用户名</text>
+  <text class="username">{{userInfo.nickName}}</text>
 </view>
 <view class="btns">
   <van-button color="#7232dd" plain="{{!isShowCourse}}" custom-style="{{btnStyleObj}}" bind:tap="triggle" data-choice="course">课程</van-button>

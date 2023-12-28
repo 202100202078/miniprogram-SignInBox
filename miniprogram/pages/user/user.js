@@ -1,4 +1,8 @@
 // pages/user/user.js
+import { createStoreBindings } from 'mobx-miniprogram-bindings'
+import {store} from '../../store/store.js'
+
+
 Page({
 
   /**
@@ -33,11 +37,19 @@ Page({
       url: '/pages/course/detail',
     })
   },
+  // observers:{
+  //   'hasUserInfo':function(newValue) {
+  //     console.log(newValue);
+  //   }
+  // },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    this.storeBindings = createStoreBindings(this,{
+      store,
+      fields: ['userInfo','hasUserInfo']
+    })
   },
 
   /**

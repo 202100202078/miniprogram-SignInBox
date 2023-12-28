@@ -21,16 +21,19 @@ Page({
       success: (res) => {
         this.setUserInfo(res.userInfo)
         this.updateHasUserInfo(true)
+        console.log(res.userInfo);
+        // console.log(res.userInfo);
+        // 跳转到用户页
+        wx.switchTab({
+          url: '/pages/user/user'
+        })
       },
       fail: ()=> {
         this.onAuthenticated()
       }
     })
 
-    // 跳转到用户页
-    wx.switchTab({
-      url: '/pages/user/user'
-    })
+
   },
   /**
    * 生命周期函数--监听页面加载
