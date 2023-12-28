@@ -23,13 +23,7 @@ Page({
         this.updateHasUserInfo(true)
       },
       fail: ()=> {
-        wx.redirectTo({
-          url: '/pages/rolechoice/rolechoice',
-        })
-        wx.showModal({
-          title: '提示',
-          content: '为了小程序的正常使用，需要您的个人信息授权',
-        })
+        this.onAuthenticated()
       }
     })
 
@@ -44,7 +38,7 @@ Page({
   onLoad(options) {
     this.storeBindings = createStoreBindings(this,{
       store,
-      actions: ['updateRole','getRole','setUserInfo','getUserInfo','updateHasUserInfo']
+      actions: ['updateRole','getRole','setUserInfo','getUserInfo','updateHasUserInfo','onAuthenticated']
     })
   },
 
