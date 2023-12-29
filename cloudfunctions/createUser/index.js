@@ -13,7 +13,7 @@ exports.main = async (event, context) => {
   const db = cloud.database()
   const wxContext = cloud.getWXContext()
   const arr = await db.collection('user').where({
-    openid: wxContext.OPENID
+    userId: wxContext.OPENID
   }).limit(MAX_LIMIT).get()
   const hasUser = arr.data.length === 1
   if(hasUser) {
@@ -24,7 +24,7 @@ exports.main = async (event, context) => {
     }
   }else {
     // 无则使用默认数据加入数据库记录
-      await user.add({
+      const res = await db.collection('user').add({
       // data 字段表示需新增的 JSON 数据
       data: {
         userId: wxContext.OPENID,
@@ -35,6 +35,7 @@ exports.main = async (event, context) => {
     })
     return {
       msg: 'ok',
+      res,
       _openid: wxContext.OPENID,
     }
   }
