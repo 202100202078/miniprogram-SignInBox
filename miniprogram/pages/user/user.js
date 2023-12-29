@@ -2,13 +2,15 @@
 import { createStoreBindings } from 'mobx-miniprogram-bindings'
 import {store} from '../../store/store.js'
 
-
+const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    username:'用户名',
+    avatarUrl: defaultAvatarUrl,
     btnStyleObj: 
       `width: 320rpx;
       height: 108rpx;
@@ -42,7 +44,7 @@ Page({
   onLoad(options) {
     this.storeBindings = createStoreBindings(this,{
       store,
-      fields: ['userInfo','hasUserInfo','role']
+      fields: ['role']
     })
     wx.cloud.callFunction({
       name:'quickstartFunctions',
@@ -50,38 +52,11 @@ Page({
         type: 'getOpenId'
       },
     }).then(res=> {
-      console.log(res);
+      // console.log(res.result.openid);
     })
-    // wx.login({
-    //   success: (res) => {
-    //     wx.cloud.callFunction({
-    //       name:'login',
-    //       data:{
-    //         code:res.code
-    //       }
-    //     }).then(res=>{
-    //       console.log(res);
-    //     })
-    //   },
-    // })
-
-    // wx.login({
-    //   success: (res) => {
-    //     //回传服务器
-    //   },
-    // })
-    // wx.cloud.callFunction({
-    //   // 云函数名称
-    //   name: 'createUser',
-    //   // 传给云函数的参数
-    //   data: {
-        
-    //   },
-    // })
-    // .then(res => {
-    //   console.log(res.result) // 3
-    // })
-    // .catch(console.error)
+    // 根据openid查看数据库是否有该用户
+    // 有则获取对应数据库记录进行渲染
+    // 无则使用默认数据加入数据库记录
   },
 
   /**

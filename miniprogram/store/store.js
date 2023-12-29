@@ -2,8 +2,8 @@ import {observable,action} from 'mobx-miniprogram'
 
 export const store = observable({
   role: '',
-  userInfo: {},
-  hasUserInfo:false,
+  // userInfo: {},
+  // hasUserInfo:false,
   onAuthenticated:action(function(){
     if(this.hasUserInfo) return 
     wx.redirectTo({

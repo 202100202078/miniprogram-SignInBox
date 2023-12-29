@@ -16,23 +16,23 @@ Page({
     // this.getRole()
     // 选择role后
     // 获取微信个人信息
-    wx.getUserProfile({
-      desc: '用于显示个人头像与用户名', // 声明获取用户个人信息后的用途
-      success: (res) => {
-        this.setUserInfo(res.userInfo)
-        this.updateHasUserInfo(true)
-        // console.log(res.userInfo);
-        // console.log(res.userInfo);
-        // 跳转到用户页
-        wx.switchTab({
-          url: '/pages/user/user'
-        })
-      },
-      fail: ()=> {
-        this.onAuthenticated()
-      }
-    })
-
+    // wx.getUserProfile({
+    //   desc: '用于显示个人头像与用户名', // 声明获取用户个人信息后的用途
+    //   success: (res) => {
+    //     this.setUserInfo(res.userInfo)
+    //     this.updateHasUserInfo(true)
+    //     // console.log(res.userInfo);
+    //     // console.log(res.userInfo);
+    //   },
+    //   fail: ()=> {
+      //     this.onAuthenticated()
+      //   }
+      // })
+      
+          // 跳转到用户页
+          wx.switchTab({
+            url: '/pages/user/user'
+          })
 
   },
   /**

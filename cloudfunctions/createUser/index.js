@@ -13,6 +13,7 @@ exports.main = async (event, context) => {
   user.add({
     // data 字段表示需新增的 JSON 数据
     data: {
+      userId: event.openid,
       avatarUrl: event.avatarUrl,
       uname: event.uname,
       role: event.role

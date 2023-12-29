@@ -5,7 +5,7 @@
     round
     width="240rpx"
     height="240rpx"
-    src="{{userInfo.avatarUrl}}"
+    src="{{avatarUrl}}"
     class="avatar"
     fit="cover"
     slot="loading"
@@ -14,7 +14,7 @@
      加载中...
     </van-loading>
   </van-image>
-  <text class="username">{{userInfo.nickName}}</text>
+  <text class="username">{{username}}</text>
 </view>
 <view class="btns">
   <van-button color="#7232dd" plain="{{!isShowCourse}}" custom-style="{{btnStyleObj}}" bind:tap="triggle" data-choice="course">课程</van-button>
@@ -30,7 +30,7 @@
       </view>
     </view>
     <view class="right" hidden="{{isShowCourse}}">
-      <block wx:if="{{!isTeacher}}">
+      <block wx:if="{{role==='student'}}">
         <view class="date-stu">2023/12/11</view>
         <view class="time-stu">20:47:33</view>
         <view class="info-stu">出勤</view>
