@@ -17,7 +17,8 @@ Page({
       border-radius: 30rpx;
       font-size: 48rpx;`,
     isShowCourse: false,
-    isTeacher:true
+    isTeacher:true,
+    openid:''
   },
   triggle(e) {
     const choice = e.target.dataset.choice
@@ -46,15 +47,28 @@ Page({
       store,
       fields: ['role']
     })
-    wx.cloud.callFunction({
-      name:'quickstartFunctions',
-      data: {
-        type: 'getOpenId'
-      },
-    }).then(res=> {
-      // console.log(res.result.openid);
-    })
+
+    // wx.cloud.callFunction({
+    //   name:'quickstartFunctions',
+    //   data: {
+    //     type: 'getOpenId'
+    //   },
+    // }).then(res=> {
+    //   // console.log(res.result.openid);
+    //   this.setData({
+    //     openid:res.result.openid
+    //   })
+    // })
     // 根据openid查看数据库是否有该用户
+    // const openid = this.data.openid
+    // let hasUser = false
+    // wx.cloud.callFunction({
+    //   name: 'hasUser',
+    // }).then(res=>{
+    //   console.log(res.result.res.data.length);
+    //   hasUser = res.result.res.data.length===1
+    // })
+    // console.log(hasUser);
     // 有则获取对应数据库记录进行渲染
     // 无则使用默认数据加入数据库记录
   },
@@ -65,6 +79,11 @@ Page({
   onReady() {
     wx.setNavigationBarTitle({
       title: '我的',
+    })
+    wx.cloud.callFunction({
+      name:'createUser'
+    }).then(res=>{
+      console.log(res);
     })
     // console.log(this.data.userInfo);
     // console.log(this.data.role);

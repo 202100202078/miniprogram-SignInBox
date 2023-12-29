@@ -3,32 +3,50 @@ const cloud = require('wx-server-sdk')
 
 cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV }) // 使用当前云环境
 
-const db = cloud.database()
-const user = db.collection('user')
+const MAX_LIMIT = 1
+
+
+// 根据openid查询是否有记录
 
 // 云函数入口函数
 exports.main = async (event, context) => {
+  const db = cloud.database()
   const wxContext = cloud.getWXContext()
-  const data = {}
-  user.add({
-    // data 字段表示需新增的 JSON 数据
-    data: {
-      userId: event.openid,
-      avatarUrl: event.avatarUrl,
-      uname: event.uname,
-      role: event.role
+  const arr = await db.collection('user').where({
+    openid: wxContext.OPENID
+  }).limit(MAX_LIMIT).get()
+  const hasUser = arr.data.length === 1
+  if(hasUser) {
+    // 有则获取对应数据库记录进行渲染
+    return {
+      userInfo:arr,
+      _openid: wxContext.OPENID,
     }
-  })
-  .then(res => {
-    data = res
-    // console.log(res)
-    data.msg = 'ok'
-  })
-  return {
-    data,
-    event,
-    openid: wxContext.OPENID,
-    appid: wxContext.APPID,
-    unionid: wxContext.UNIONID,
+  }else {
+    // 无则使用默认数据加入数据库记录
+      await user.add({
+      // data 字段表示需新增的 JSON 数据
+      data: {
+        userId: wxContext.OPENID,
+        avatarUrl: event.avatarUrl,
+        uname: event.uname,
+        role: event.role
+      }
+    })
+    return {
+      msg: 'ok',
+      _openid: wxContext.OPENID,
+    }
   }
+  // return {
+  //   hasUser,
+  //   _openid: wxContext.OPENID,
+  // }
+  // try{
+  //   return await db.collection('user').where({
+  //     openid: wxContext.OPENID
+  //   }).limit(MAX_LIMIT).get()
+  // } catch(e) {
+  //   console.log(e);
+  // }
 }
