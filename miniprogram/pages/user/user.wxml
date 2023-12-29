@@ -1,20 +1,27 @@
 <!-- pages/user/user.wxml -->
 <view class="userinfo">
-  <van-image
-    use-loading-slot
-    round
-    width="240rpx"
-    height="240rpx"
-    src="{{avatarUrl}}"
-    class="avatar"
-    fit="cover"
-    slot="loading"
-  >
-    <van-loading color="#7232dd" slot="loading" type="spinner" size="20" vertical>  
-     加载中...
-    </van-loading>
-  </van-image>
-  <text class="username">{{username}}</text>
+  <button class="avatar-btn" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+    <van-image
+      use-loading-slot
+      round
+      width="240rpx"
+      height="240rpx"
+      src="{{avatarUrl}}"
+      class="avatar"
+      fit="cover"
+      slot="loading"
+    >
+      <van-loading color="#7232dd" slot="loading" type="spinner" size="20" vertical>  
+      加载中...
+      </van-loading>
+    </van-image>
+  </button>
+  <navigator url="/pages/editUserInfo/editUserInfo">
+    <view class="right" bind:tap="toEditUserInfo">
+      <text class="username">{{username}}</text>
+      <van-icon name="edit" size="48rpx"/>
+    </view>
+  </navigator>
 </view>
 <view class="btns">
   <van-button color="#7232dd" plain="{{!isShowCourse}}" custom-style="{{btnStyleObj}}" bind:tap="triggle" data-choice="course">课程</van-button>

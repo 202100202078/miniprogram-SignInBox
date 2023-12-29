@@ -6,6 +6,20 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/user/user",
+          "pathName": "pages/user/user",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/editUserInfo/editUserInfo",
+          "pathName": "pages/editUserInfo/editUserInfo",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/rolechoice/rolechoice",
           "pathName": "pages/rolechoice/rolechoice",
           "query": "",

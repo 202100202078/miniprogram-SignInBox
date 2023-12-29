@@ -45,7 +45,8 @@ Page({
   onLoad(options) {
     this.storeBindings = createStoreBindings(this,{
       store,
-      fields: ['role']
+      fields: ['role'],
+      actions: ['setAvatarUrl','setUname','setUserInfo'],
     })
   },
 
@@ -56,6 +57,13 @@ Page({
     wx.setNavigationBarTitle({
       title: '我的',
     })
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow() {
+    // 每次回到页面重新获取用户数据
     wx.cloud.callFunction({
       name:'createUser',
       data:{
@@ -64,7 +72,9 @@ Page({
         uname:'默认用户名'
       }
     }).then(res=>{
-      if(res.result.userInfo) {
+      // 如果用户已存在数据库则返回用户信息userInfo
+      const flag = res.result.userInfo
+      if(flag) {
         const {uname,role,avatarUrl} = res.result.userInfo.data[0]
         this.setData({
           uname,
@@ -72,29 +82,13 @@ Page({
           role
         })
       }
-    })
-    // console.log(this.data.userInfo);
-    // console.log(this.data.role);
-    // wx.cloud.callFunction({
-    //   // 云函数名称
-    //   name: 'createUser',
-    //   // 传给云函数的参数
-    //   data: {
-    //     avatarUrl:this.data.userInfo.avatarUrl,
-    //     uname:this.data.userInfo.nickName,
-    //     role:this.data.role
-    //   },
-    // })
-    // .then(res => {
-    //   console.log(res.result)
-    // })
-    // .catch(console.error)
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
+      // 将用户信息存储到Mobx中便于后续使用
+      this.setUserInfo({
+        uname:this.data.username,
+        avatarUrl:this.data.avatarUrl,
+        role:this.data.role
+      })
+    })    
 
   },
 
@@ -109,7 +103,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-
+    this.storeBindings.destroyStoreBindings()
   },
 
   /**

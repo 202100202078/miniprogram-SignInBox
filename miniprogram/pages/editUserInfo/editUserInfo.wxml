@@ -1,0 +1,19 @@
+<view class="my-container">
+  <view class="form">
+    <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+      <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+    </button> 
+      <van-cell-group>
+        <van-field
+          model:value="{{ userInfo.uname }}"
+          required
+          clearable
+          label="用户名"
+          placeholder="请输入用户名"
+        />
+    </van-cell-group>
+  </view>
+  <view class="btn">
+    <van-button type="info" round size="large" bind:tap="confirmEditUserInfo">信息按钮</van-button>
+  </view>
+</view>

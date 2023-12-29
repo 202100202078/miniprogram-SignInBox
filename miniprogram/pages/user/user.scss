@@ -2,14 +2,22 @@
   display: flex;
   align-items: center;
   margin-top: 116rpx;
-  .avatar {
+  .avatar-btn {
+    margin-right: 0;
+    padding: 0;
     margin-left: 46rpx;
     width: 240rpx;
   }
-  .username {
-    margin-left: 62rpx;
-    font-size: 48rpx;
-    font-weight: bold;
+  .right {
+    display: flex;
+    line-height: 38rpx;
+    // align-items: center;
+    .username {
+      // margin-right: 62rpx;
+      margin-left: 62rpx;
+      font-size: 48rpx;
+      font-weight: bold;
+    }
   }
 }
 

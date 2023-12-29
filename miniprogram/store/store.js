@@ -1,9 +1,20 @@
 import {observable,action} from 'mobx-miniprogram'
 
 export const store = observable({
+  userInfo:{},
+  uname:'',
+  avatarUrl:'',
   role: '',
-  // userInfo: {},
-  // hasUserInfo:false,
+  userInfo: {},
+  setUserInfo:action(function(newValue){
+    this.userInfo = newValue
+  }),
+  setUname:action(function(newUname){
+    this.uname = newUname
+  }),
+  setAvatarUrl:action(function(newValue){
+    this.avatarUrl = newValue
+  }),
   onAuthenticated:action(function(){
     if(this.hasUserInfo) return 
     wx.redirectTo({
@@ -16,12 +27,6 @@ export const store = observable({
   }),
   updateHasUserInfo:action(function(param){
     this.hasUserInfo = param
-  }),
-  setUserInfo:action(function(myuserinfo){
-    this.userInfo = myuserinfo
-  }),
-  getUserInfo:action(function(){
-    console.log(this.userInfo);
   }),
   getRole:action(function(){
     console.log(this.role);
