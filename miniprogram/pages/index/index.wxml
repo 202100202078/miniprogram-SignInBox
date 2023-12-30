@@ -1,7 +1,7 @@
 <!--pages/index/index.wxml-->
 
 <view class="btns">
-  <van-button type="warning" size="large" round bind:tap="triggerIdentity">{{!isTeacher?'切换为老师':'切换为学生'}}</van-button>
+  <!-- <van-button type="warning" size="large" round bind:tap="triggerIdentity">{{!isTeacher?'切换为老师':'切换为学生'}}</van-button> -->
   <!-- <view class="btns-inner"> -->
     <block wx:if="{{!isTeacher}}">
       <van-button type="info" size="large" round>加入课程</van-button>
@@ -113,7 +113,7 @@
   <view class="semester" wx:for="{{semesterAndCourseData}}" wx:key="semesterId" wx:for-item="semester">
     <view class="title">
       <text class="semester-name">{{semester.semesterName}}</text>
-      <text class="edit" bind:tap="editSemester" data-sname="{{semester.semesterName}}" data-sid="{{semester._id}}">编辑</text>
+      <text class="edit" bind:tap="editSemester" data-sname="{{semester.semesterName}}" data-sid="{{semester._id}}" wx:if="{{isTeacher}}">编辑</text>
     </view>
     <view class="cell-group">
       <block wx:if="{{semester.courses[0]}}">

@@ -81,11 +81,11 @@ Page({
     semesterKeyValue:[],
     isLoading:false
   },
-  triggerIdentity(){
-    this.setData({
-      isTeacher:!this.data.isTeacher
-    })
-  },
+  // triggerIdentity(){
+  //   this.setData({
+  //     isTeacher:!this.data.isTeacher
+  //   })
+  // },
   // 显示弹出层同时关闭TabBar
   createSemester() {
     wx.hideTabBar()
@@ -250,21 +250,8 @@ Page({
   addcourseConfirm() {
     const curId = this.data.curSemester[0]
     const index = this.data.semesterAndCourseData.findIndex(ele=>ele._id===curId)
+    // 这里是为了构造自增courseId
     const temp = this.data.semesterAndCourseData[index].courses
-    
-    // const newEle = {
-    //   courseId: temp.length,
-    //   courseName: this.data.courseNameInput,
-    //   courseDesc: this.data.courseDescInput
-    // }
-    // console.log(curId);
-    // console.log(index);
-    // console.log(temp);
-    // console.log(newEle);
-    // this.setData({
-    //   ['semesterAndCourseData['+index+'].courses']:[...temp,newEle],
-    //   showAddCourse:false
-    // })
     // 课程名称必填
     if(this.data.courseNameInput==='')return
     wx.cloud.callFunction({
@@ -302,7 +289,7 @@ Page({
   onLoad(options) {
     this.storeBindings = createStoreBindings(this,{
       store,
-      fields: ['userInfo'],
+      fields: ['userInfo','role'],
       actions: []
     })
     wx.cloud.callFunction({
@@ -322,6 +309,11 @@ Page({
     wx.setNavigationBarTitle({
       title: '首页',
     })
+    // console.log(this.data.role);
+    this.setData({
+      isTeacher:this.data.role==='teacher'
+    })
+    // console.log(this.data.isTeacher);
   },
 
   /**
