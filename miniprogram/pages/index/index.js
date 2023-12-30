@@ -126,6 +126,7 @@ Page({
       wx.showToast({
         title: '创建成功',
       })
+      this._getCourseInfo()
     })
     this.onCloseSemester()
   },
@@ -153,9 +154,21 @@ Page({
       .then(() => {
         // on confirm
         // 删除当前学期
-        const newdata = this.data.semesterAndCourseData.filter((val)=>val.semesterId!=this.data.curSemester[0])
-        this.setData({
-          semesterAndCourseData:newdata
+        // const newdata = this.data.semesterAndCourseData.filter((val)=>val.semesterId!=this.data.curSemester[0])
+        // this.setData({
+        //   semesterAndCourseData:newdata
+        // })
+        //调用云函数删除后台数据
+        // console.log(this.data.curSemester[0]);
+        wx.cloud.callFunction({
+          name:'delSemester',
+          data: {
+            _id:this.data.curSemester[0]
+          }
+        }).then(res=>{
+          //重新获取数据
+          // console.log(res);
+          this._getCourseInfo()
         })
         Toast.success('删除成功');
         this.onCloseEditSemester()
@@ -261,6 +274,16 @@ Page({
 
     Toast.success('操作成功');
   },
+  _getCourseInfo() {
+    wx.cloud.callFunction({
+      name:'getCourseInfo'
+    }).then(res=>{
+      // console.log(res);
+      this.setData({
+        semesterAndCourseData:res.result.courses_info.data
+      })
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -270,6 +293,7 @@ Page({
       fields: ['userInfo'],
       actions: []
     })
+    // _getCourseInfo()
     wx.cloud.callFunction({
       name:'getCourseInfo'
     }).then(res=>{
