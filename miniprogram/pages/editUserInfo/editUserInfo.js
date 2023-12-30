@@ -30,6 +30,10 @@ Page({
       }
     }).then(res=>{
       console.log(res);
+      wx.navigateBack()
+      wx.showToast({
+        title: '修改成功',
+      })
     })
   },
   /**

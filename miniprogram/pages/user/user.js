@@ -77,7 +77,7 @@ Page({
       if(flag) {
         const {uname,role,avatarUrl} = res.result.userInfo.data[0]
         this.setData({
-          uname,
+          username:uname,
           avatarUrl,
           role
         })
