@@ -22,7 +22,15 @@ Page({
   },
   confirmEditUserInfo() {
     // 修改对应用户数据库数据
-    
+    wx.cloud.callFunction({
+      name: 'editUserInfo',
+      data:{
+        avatarUrl:this.data.avatarUrl,
+        uname:this.data.uname
+      }
+    }).then(res=>{
+      console.log(res);
+    })
   },
   /**
    * 生命周期函数--监听页面加载
