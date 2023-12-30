@@ -11,7 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    uname: '',
+    uname: '默认用户名',
     avatarUrl: defaultAvatarUrl,
   },
   onChooseAvatar(e) {
@@ -30,8 +30,13 @@ Page({
   onLoad(options) {
     this.storeBindings = createStoreBindings(this,{
       store,
-      fields: ['userInfo'],
-      actions: ['getUserInfo']
+      fields: [],
+      actions: []
+    })
+    // console.log(options);
+    this.setData({
+      uname:options.uname,
+      avatarUrl:options.avatarUrl
     })
   },
   

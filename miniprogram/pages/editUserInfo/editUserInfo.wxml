@@ -1,11 +1,11 @@
 <view class="my-container">
   <view class="form">
     <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
-      <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+      <image class="avatar" src="{{avatarUrl}}"></image>
     </button> 
       <van-cell-group>
         <van-field
-          model:value="{{ userInfo.uname }}"
+          model:value="{{ uname }}"
           required
           clearable
           label="用户名"

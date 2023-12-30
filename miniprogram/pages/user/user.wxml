@@ -16,7 +16,7 @@
       </van-loading>
     </van-image>
   </button>
-  <navigator url="/pages/editUserInfo/editUserInfo">
+  <navigator url='/pages/editUserInfo/editUserInfo?uname={{username}}&avatarUrl={{avatarUrl}}'>
     <view class="right" bind:tap="toEditUserInfo">
       <text class="username">{{username}}</text>
       <van-icon name="edit" size="48rpx"/>
