@@ -181,7 +181,8 @@ Page({
   renameFn() {
     this.onCloseEditSemester()
     this.setData({
-      showRename:true
+      showRename:true,
+      renameInput:this.data.curSemester[1]
     })
   },
   // 关闭重命名弹出层
@@ -203,14 +204,24 @@ Page({
   renameConfirm() {
     const curId = this.data.curSemester[0]
     // console.log(curId);
-    const index = this.data.semesterAndCourseData.findIndex(ele=>ele.semesterId===curId)
+    // const index = this.data.semesterAndCourseData.findIndex(ele=>ele.semesterId===curId)
     // console.log(index);
+    wx.cloud.callFunction({
+      name:'renameSemester',
+      data:{
+        _id:curId,
+        semesterName:this.data.renameInput
+      }
+    }).then(res=>{
+      // console.log(res);
+      this._getCourseInfo()
+      Toast.success('操作成功');
+    })
     this.setData({
-      ['semesterAndCourseData['+index+'].semesterName']:this.data.renameInput,
+      // ['semesterAndCourseData['+index+'].semesterName']:this.data.renameInput,
       renameInput:'',
       showRename:false
     })
-    Toast.success('操作成功');
   },
   // 关闭添加课程弹层
   onCloseAddCourse() {
