@@ -203,9 +203,6 @@ Page({
   //确认重命名
   renameConfirm() {
     const curId = this.data.curSemester[0]
-    // console.log(curId);
-    // const index = this.data.semesterAndCourseData.findIndex(ele=>ele.semesterId===curId)
-    // console.log(index);
     wx.cloud.callFunction({
       name:'renameSemester',
       data:{
@@ -218,7 +215,6 @@ Page({
       Toast.success('操作成功');
     })
     this.setData({
-      // ['semesterAndCourseData['+index+'].semesterName']:this.data.renameInput,
       renameInput:'',
       showRename:false
     })
@@ -253,37 +249,42 @@ Page({
   //确认添加课程
   addcourseConfirm() {
     const curId = this.data.curSemester[0]
-    const index = this.data.semesterAndCourseData.findIndex(ele=>ele.semesterId===curId)
+    const index = this.data.semesterAndCourseData.findIndex(ele=>ele._id===curId)
     const temp = this.data.semesterAndCourseData[index].courses
     
-    const newEle = {
-      courseId: temp.length,
-      courseName: this.data.courseNameInput,
-      courseDesc: this.data.courseDescInput
-    }
+    // const newEle = {
+    //   courseId: temp.length,
+    //   courseName: this.data.courseNameInput,
+    //   courseDesc: this.data.courseDescInput
+    // }
     // console.log(curId);
     // console.log(index);
     // console.log(temp);
     // console.log(newEle);
-    this.setData({
-      ['semesterAndCourseData['+index+'].courses']:[...temp,newEle],
-      showAddCourse:false
-    })
-    // // 课程名称必填
-    // if(this.data.courseNameInput==='')return
-    // wx.cloud.callFunction({
-    //   name: 'createCourse',
-    //   data:{
-    //     cname:this.data.courseNameInput,
-    //     desc:this.data.courseDescInput,
-    //     semester:this.data.curSemester[1],
-    //     tname:this.data.userInfo.uname
-    //   }
-    // }).then(res=>{
-    //   console.log(res);
+    // this.setData({
+    //   ['semesterAndCourseData['+index+'].courses']:[...temp,newEle],
+    //   showAddCourse:false
     // })
+    // 课程名称必填
+    if(this.data.courseNameInput==='')return
+    wx.cloud.callFunction({
+      name: 'createCourse',
+      data:{
+        courseId: temp.length,
+        courseName:this.data.courseNameInput,
+        courseDesc:this.data.courseDescInput,
+        _id:this.data.curSemester[0],
+        tname:this.data.userInfo.uname
+      }
+    }).then(res=>{
+      this._getCourseInfo()
+      // console.log(res);
+      Toast.success('操作成功');
+      this.setData({
+        showAddCourse:false
+      })
+    })
 
-    Toast.success('操作成功');
   },
   _getCourseInfo() {
     wx.cloud.callFunction({
@@ -291,7 +292,7 @@ Page({
     }).then(res=>{
       // console.log(res);
       this.setData({
-        semesterAndCourseData:res.result.courses_info.data
+        semesterAndCourseData:res.result.data
       })
     })
   },
@@ -304,13 +305,12 @@ Page({
       fields: ['userInfo'],
       actions: []
     })
-    // _getCourseInfo()
     wx.cloud.callFunction({
       name:'getCourseInfo'
     }).then(res=>{
       // console.log(res);
       this.setData({
-        semesterAndCourseData:res.result.courses_info.data
+        semesterAndCourseData:res.result.data
       })
     })
   },
