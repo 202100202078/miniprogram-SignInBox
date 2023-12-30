@@ -5,7 +5,8 @@
     "pages/course/detail",
     "pages/index/index",
     "pages/features/features",
-    "pages/editUserInfo/editUserInfo"
+    "pages/editUserInfo/editUserInfo",
+    "pages/editCourse/editCourse"
   ],
   "tabBar": {
     "borderStyle": "black",

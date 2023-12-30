@@ -1,0 +1,46 @@
+<view class="my-container">
+  <view class="form">
+    <van-cell-group>
+      <van-field
+        model:value="{{ lastForWeek }}"
+        required
+        clearable
+        label="课程周次"
+        placeholder="输入格式需如 1-18 表示该课程持续1到18周"
+        bind:click-icon="onClickIcon"
+      />
+      <van-cell
+        is-link
+        title="星期几"
+        bind:tap="toShowDayPopup"
+      />
+      <van-field
+        model:value="{{ section }}"
+        required
+        clearable
+        label="课程节次"
+        placeholder="输入格式需如 5-6 表示该课程为第5节课到第6节课"
+        bind:click-icon="onClickIcon"
+      />
+    </van-cell-group>
+  </view>
+  <view class="btn">
+    <van-button type="info" size="large" round>添加课程时间信息</van-button>  
+  </view>
+</view>
+
+<van-popup 
+show="{{ showDayPopup }}" 
+bind:close="onClose"     
+position="bottom"
+custom-style="height: 40%;"
+>
+  <van-picker 
+    default-index="{{ 2 }}"
+    columns="{{ days }}" 
+    bind:change="onDayChange"
+    show-toolbar
+    bind:confirm="onConfirmDay"
+    bind:cancel="onCancelDay"
+    />
+</van-popup>

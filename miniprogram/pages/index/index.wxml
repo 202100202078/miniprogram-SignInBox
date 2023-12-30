@@ -117,9 +117,14 @@
     </view>
     <view class="cell-group">
       <block wx:if="{{semester.courses[0]}}">
-          <view class="cell" wx:for="{{semester.courses}}" wx:key="courseId" wx:for-item="course">
-          {{course.courseName}}
-        </view>
+          <van-cell
+            wx:for="{{semester.courses}}"
+            wx:key="courseId" wx:for-item="course"
+            is-link
+            title="{{course.courseName}}"
+            link-type="navigateTo"
+            url="/pages/editCourse/editCourse?_id={{semester._id}}&courseId={{course.courseId}}"
+          />
       </block>
       <view class="cell-null" wx:else>
         <text>当前学期没有课程哦~</text>
