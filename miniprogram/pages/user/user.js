@@ -11,6 +11,7 @@ Page({
   data: {
     username:'用户名',
     avatarUrl: defaultAvatarUrl,
+    defaultAvatar:defaultAvatarUrl,
     btnStyleObj: 
       `width: 320rpx;
       height: 108rpx;
@@ -37,6 +38,18 @@ Page({
     // 携带当前课程id作为参数进入detail页面
     wx.navigateTo({
       url: '/pages/course/detail',
+    })
+  },
+  onChooseAvatar(e) {
+    const { avatarUrl } = e.detail 
+    this.setData({
+      avatarUrl,
+    })
+    wx.cloud.callFunction({
+      name: 'editUserInfo',
+      data:{
+        avatarUrl:this.data.avatarUrl,
+      }
     })
   },
   /**

@@ -59,7 +59,7 @@
   custom-style="width:90%;"
   >
   <view class="addcourse-title">
-    <text>重命名</text>
+    <text>添加课程</text>
   </view>
   <view class="addcourse-main">
     <view class="addcourse-main-input">
@@ -116,8 +116,13 @@
       <text class="edit" bind:tap="editSemester" data-sname="{{semester.semesterName}}" data-sid="{{semester.semesterId}}">编辑</text>
     </view>
     <view class="cell-group">
-      <view class="cell" wx:for="{{semester.courses}}" wx:key="courseId" wx:for-item="course">
-        {{course.courseName}}
+      <block wx:if="{{semester.courses[0]}}">
+          <view class="cell" wx:for="{{semester.courses}}" wx:key="courseId" wx:for-item="course">
+          {{course.courseName}}
+        </view>
+      </block>
+      <view class="cell-null" wx:else>
+        <text>当前学期没有课程哦~</text>
       </view>
     </view>
   </view>

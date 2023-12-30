@@ -2,6 +2,9 @@
 // import Toast from '@vant/weapp/toast/toast';
 import Dialog from '@vant/weapp/dialog/dialog';
 import Toast from '@vant/weapp/toast/toast';
+import { createStoreBindings } from 'mobx-miniprogram-bindings'
+import {store} from '../../store/store.js'
+
 
 const semester = {
   2023: ['春','秋'],
@@ -111,7 +114,18 @@ Page({
   onConfirmSemester(event) {
     const { picker, value, index } = event.detail;
     this.setData({
-      semesterKeyValue:value
+      semesterName:value.join('')
+    })
+    wx.cloud.callFunction({
+      name:'createSemester',
+      data:{
+        semesterName:this.data.semesterName
+      }
+    }).then(res=>{
+      // console.log(res);
+      wx.showToast({
+        title: '创建成功',
+      })
     })
     this.onCloseSemester()
   },
@@ -214,11 +228,6 @@ Page({
   },
   //确认添加课程
   addcourseConfirm() {
-    // {
-    //   courseId: 2,
-    //   courseName: '测试2',
-    //   courseDesc: ''
-    // }
     const curId = this.data.curSemester[0]
     const index = this.data.semesterAndCourseData.findIndex(ele=>ele.semesterId===curId)
     const temp = this.data.semesterAndCourseData[index].courses
@@ -236,13 +245,39 @@ Page({
       ['semesterAndCourseData['+index+'].courses']:[...temp,newEle],
       showAddCourse:false
     })
+    // // 课程名称必填
+    // if(this.data.courseNameInput==='')return
+    // wx.cloud.callFunction({
+    //   name: 'createCourse',
+    //   data:{
+    //     cname:this.data.courseNameInput,
+    //     desc:this.data.courseDescInput,
+    //     semester:this.data.curSemester[1],
+    //     tname:this.data.userInfo.uname
+    //   }
+    // }).then(res=>{
+    //   console.log(res);
+    // })
+
     Toast.success('操作成功');
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    this.storeBindings = createStoreBindings(this,{
+      store,
+      fields: ['userInfo'],
+      actions: []
+    })
+    wx.cloud.callFunction({
+      name:'getCourseInfo'
+    }).then(res=>{
+      // console.log(res);
+      this.setData({
+        semesterAndCourseData:res.result.courses_info.data
+      })
+    })
   },
 
   /**

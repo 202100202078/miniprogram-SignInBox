@@ -13,8 +13,10 @@ Page({
   data: {
     uname: '默认用户名',
     avatarUrl: defaultAvatarUrl,
+    defaultAvatar:defaultAvatarUrl
   },
   onChooseAvatar(e) {
+    // console.log(e.detail);
     const { avatarUrl } = e.detail 
     this.setData({
       avatarUrl,
@@ -33,6 +35,7 @@ Page({
       wx.navigateBack()
       wx.showToast({
         title: '修改成功',
+        duration: 1500
       })
     })
   },

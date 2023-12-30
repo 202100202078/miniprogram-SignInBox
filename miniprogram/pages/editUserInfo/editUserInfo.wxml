@@ -1,7 +1,7 @@
 <view class="my-container">
   <view class="form">
     <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
-      <image class="avatar" src="{{avatarUrl}}"></image>
+      <image class="avatar" src="{{avatarUrl?avatarUrl:defaultAvatar}}"></image>
     </button> 
       <van-cell-group>
         <van-field

@@ -6,7 +6,7 @@
       round
       width="240rpx"
       height="240rpx"
-      src="{{avatarUrl}}"
+      src="{{avatarUrl?avatarUrl:defaultAvatar}}"
       class="avatar"
       fit="cover"
       slot="loading"
