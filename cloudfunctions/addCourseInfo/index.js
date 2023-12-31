@@ -17,6 +17,7 @@ exports.main = async (event, context) => {
           end: event.lastForWeek[1]
         }),
         [`courses.${idx}.dayOfWeek`]:_.push(event.dayOfWeek),
+        [`courses.${idx}.classroom`]:_.push(event.classroom),
         [`courses.${idx}.section`]:_.push({
           start:event.section[0],
           end:event.section[1]

@@ -11,6 +11,7 @@ exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
   try {
     return await db.collection('courses')
+    .doc()
     .get()
   }catch(e) {
     console.log(e);

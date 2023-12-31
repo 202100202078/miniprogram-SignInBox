@@ -7,7 +7,6 @@
         clearable
         label="课程周次"
         placeholder="输入格式需如 1-18 表示该课程持续1到18周"
-        bind:click-icon="onClickIcon"
       />
       <van-cell
         is-link
@@ -20,7 +19,13 @@
         clearable
         label="课程节次"
         placeholder="输入格式需如 5-6 表示该课程为第5节到第6节"
-        bind:click-icon="onClickIcon"
+      />
+      <van-field
+        model:value="{{ classroom }}"
+        required
+        clearable
+        label="教室号"
+        placeholder="例 C-5-361 表教室在C-5-361"
       />
     </van-cell-group>
   </view>

@@ -8,6 +8,7 @@ Page({
     lastForWeek:'',
     whichDay:'',
     section:'',
+    classroom:'',
     showDayPopup:false,
     days:['星期一','星期二','星期三','星期四','星期五','星期六','星期天']
   },
@@ -29,7 +30,7 @@ Page({
     this.setData({ showDayPopup: false });
   },
   addCourseInfo() {
-    if(!this.data.section||!this.data.lastForWeek||!this.data.whichDay){
+    if(!this.data.section||!this.data.lastForWeek||!this.data.whichDay||!this.data.classroom){
       wx.showToast({
         title: '输入不能为空',
       })
@@ -46,13 +47,15 @@ Page({
         courseId: this.data.courseId,
         lastForWeek,
         section,
-        dayOfWeek:this.data.whichDay
+        dayOfWeek:this.data.whichDay,
+        classroom:this.data.classroom
       }
     }).then(res=>{
       this.setData({
         whichDay:'',
         section:'',
-        lastForWeek:''
+        lastForWeek:'',
+        classroom:''
       })
       wx.showToast({
         title: '添加成功',
