@@ -18,7 +18,10 @@ exports.main = async (event, context) => {
           courseName: event.courseName,
           courseDesc: event.courseDesc,
           tname: event.tname,
-          teacherId: wxContext.OPENID
+          teacherId: wxContext.OPENID,
+          lastForWeek:[],
+          section:[],
+          dayOfWeek:[]
         })
       } 
     })

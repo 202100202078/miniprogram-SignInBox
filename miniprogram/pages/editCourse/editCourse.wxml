@@ -11,7 +11,7 @@
       />
       <van-cell
         is-link
-        title="星期几"
+        title="{{whichDay?whichDay:'星期几'}}"
         bind:tap="toShowDayPopup"
       />
       <van-field
@@ -19,13 +19,13 @@
         required
         clearable
         label="课程节次"
-        placeholder="输入格式需如 5-6 表示该课程为第5节课到第6节课"
+        placeholder="输入格式需如 5-6 表示该课程为第5节到第6节"
         bind:click-icon="onClickIcon"
       />
     </van-cell-group>
   </view>
   <view class="btn">
-    <van-button type="info" size="large" round>添加课程时间信息</van-button>  
+    <van-button type="info" size="large" round bind:tap="addCourseInfo">添加课程时间信息</van-button>  
   </view>
 </view>
 
