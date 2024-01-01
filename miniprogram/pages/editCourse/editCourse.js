@@ -57,8 +57,9 @@ Page({
         lastForWeek:'',
         classroom:''
       })
+      wx.navigateBack()
       wx.showToast({
-        title: '添加成功',
+        title: '添加成功'
       })
     })
   },

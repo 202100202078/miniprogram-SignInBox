@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    semesterAndCourseData:[],
     username:'用户名',
     avatarUrl: defaultAvatarUrl,
     defaultAvatar:defaultAvatarUrl,
@@ -50,6 +51,16 @@ Page({
       data:{
         avatarUrl:this.data.avatarUrl,
       }
+    })
+  },
+  _getCourseInfo() {
+    wx.cloud.callFunction({
+      name:'getCourseInfo'
+    }).then(res=>{
+      // console.log(res);
+      this.setData({
+        semesterAndCourseData:res.result.data
+      })
     })
   },
   /**
@@ -102,7 +113,8 @@ Page({
         role:this.data.role
       })
     })    
-
+    //获取当前用户的课程信息
+    this._getCourseInfo()
   },
 
   /**

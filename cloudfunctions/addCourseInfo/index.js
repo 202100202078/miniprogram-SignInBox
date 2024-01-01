@@ -12,13 +12,13 @@ exports.main = async (event, context) => {
   try {
     return await db.collection('courses').doc(event._id).update({
       data: {
-        [`courses.${idx}.lastForWeek`]: _.push({
+        [`courses.${idx}.lastForWeek`]: _.set({
           start: event.lastForWeek[0],
           end: event.lastForWeek[1]
         }),
-        [`courses.${idx}.dayOfWeek`]:_.push(event.dayOfWeek),
-        [`courses.${idx}.classroom`]:_.push(event.classroom),
-        [`courses.${idx}.section`]:_.push({
+        [`courses.${idx}.dayOfWeek`]:_.set(event.dayOfWeek),
+        [`courses.${idx}.classroom`]:_.set(event.classroom),
+        [`courses.${idx}.section`]:_.set({
           start:event.section[0],
           end:event.section[1]
         })

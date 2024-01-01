@@ -30,45 +30,51 @@
 
 .cellList {
   margin-top: 54rpx;
-  .cell {
-    padding: 14rpx;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #ffffff;
-    border: 1px solid #000000bb;
-    .left {
-      .title {
-        margin-bottom: 10rpx;
-        font-size: 32rpx;
-        font-weight: bold;
-      }
-      .info {
-        font-size: 28rpx;
-      }
+  .semesterItem {
+    .semesterName {
+      padding: 14rpx;
+      font-weight: bold;
     }
-    .right {
-      text-align: center;
-      color: #000000;
-      font-size: 24rpx;
-      .date-stu {
-        color: #14934F;
+    .cell {
+      padding: 14rpx;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #ffffff;
+      border: 1px solid #000000bb;
+      .left {
+        .title {
+          margin-bottom: 10rpx;
+          font-size: 32rpx;
+          font-weight: bold;
+        }
+        .info {
+          font-size: 28rpx;
+        }
       }
-      .time-stu {
-        color: #14934F;
-      }
-      .info-stu {
-        font-size: 48rpx;
-        color: #14934F;
-      }
-      .info1-tea {
-        color: #14934F;
-      }
-      .info2-tea {
-        color: #A5072E;
-      }
-      .active {
-        color: #A5072E;
+      .right {
+        text-align: center;
+        color: #000000;
+        font-size: 24rpx;
+        .date-stu {
+          color: #14934F;
+        }
+        .time-stu {
+          color: #14934F;
+        }
+        .info-stu {
+          font-size: 48rpx;
+          color: #14934F;
+        }
+        .info1-tea {
+          color: #14934F;
+        }
+        .info2-tea {
+          color: #A5072E;
+        }
+        .active {
+          color: #A5072E;
+        }
       }
     }
   }
