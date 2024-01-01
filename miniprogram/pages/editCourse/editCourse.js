@@ -5,6 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    courseName:'',
+    courseDesc:'',
     lastForWeek:'',
     whichDay:'',
     section:'',
@@ -72,13 +74,34 @@ Page({
       _id:options._id,
       courseId:options.courseId
     })
+    // console.log(typeof +options.courseId);
+    wx.cloud.callFunction({
+      name:'getCourse',
+      data: {
+        _id:options._id,
+        courseId:+options.courseId
+      }
+    }).then(res=>{
+      const {classroom,courseDesc,courseName,dayOfWeek,lastForWeek,section} = res.result.data.courses[+options.courseId]
+      // console.log(res.result.data.courses[+options.courseId]);
+      this.setData({
+        whichDay:dayOfWeek,
+        classroom,
+        courseDesc,
+        courseName,
+        lastForWeek:lastForWeek.start+'-'+lastForWeek.end,
+        section:section.start+'-'+section.end,
+      })
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-
+    wx.setNavigationBarTitle({
+      title: '修改课程信息',
+    })
   },
 
   /**

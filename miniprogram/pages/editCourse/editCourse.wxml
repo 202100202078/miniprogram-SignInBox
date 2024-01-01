@@ -2,6 +2,23 @@
   <view class="form">
     <van-cell-group>
       <van-field
+        model:value="{{ courseName }}"
+        required
+        clearable
+        label="课程名"
+        placeholder="请输入课程名"
+      />
+      <van-field
+        model:value="{{ courseDesc }}"
+        label="课程简介"
+        type="textarea"
+        placeholder="请输入课程简介"
+        required
+        clearable
+        autosize
+        border="{{ false }}"
+      />
+      <van-field
         model:value="{{ lastForWeek }}"
         required
         clearable
@@ -30,7 +47,7 @@
     </van-cell-group>
   </view>
   <view class="btn">
-    <van-button type="info" size="large" round bind:tap="addCourseInfo">修改课程时间信息</van-button>  
+    <van-button type="info" size="large" round bind:tap="addCourseInfo">修改课程信息</van-button>  
   </view>
 </view>
 
