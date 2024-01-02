@@ -1,0 +1,46 @@
+.my-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  .header {
+    height: 24%;
+    display: flex;
+    flex-direction: column;
+    .top-show {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 30%;
+      background-color: skyblue;
+      text-align: center;
+      .course-info {
+        .second {
+          margin-left: 16rpx;
+        }
+        .code {
+          color: slateblue;
+          font-weight: bold;
+        }
+      }
+    }
+    .bottom {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      padding: 16rpx;
+      .bottom-search {
+        margin-top: 16rpx;
+        display: flex;
+        align-items: center;
+        .my-input {
+          padding: 10rpx;
+          background-color: #ffffff;
+        }
+      }
+    }
+  }
+  .stu-list-show {
+    flex: 1;
+  }
+}

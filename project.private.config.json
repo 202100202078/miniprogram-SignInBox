@@ -6,6 +6,27 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/qrcodeIndex/qrcodeIndex",
+          "pathName": "pages/qrcodeIndex/qrcodeIndex",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/courseInfo/courseInfo",
+          "pathName": "pages/courseInfo/courseInfo",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/courseIndex/courseIndex",
+          "pathName": "pages/courseIndex/courseIndex",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/editCourse/editCourse",
           "pathName": "pages/editCourse/editCourse",
           "query": "_id=932af698658fcbd8000ae3450c64d290&courseId=0",

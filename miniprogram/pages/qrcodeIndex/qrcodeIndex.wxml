@@ -1,0 +1,9 @@
+<view class="my-container">
+  <view class="qr-container">
+    <text>课程名</text>
+    <canvas style="width: 200px; height: 200px;" canvas-id="myQrcode"></canvas>
+  </view>
+  <view class="btn">
+    <van-button type="info" plain size="large">刷新</van-button>
+  </view>
+</view>

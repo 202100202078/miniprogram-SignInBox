@@ -1,0 +1,29 @@
+/* pages/courseIndex/courseIndex.wxss */
+
+.my-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  .header {
+    height: 300rpx;
+    margin-bottom: 20rpx;
+  }
+  .features {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    .featureItem {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 16rpx;
+      box-sizing: border-box;
+      width: 25%;
+      height: 190rpx;
+      border: 1px solid rgba(51, 50, 50, 0.39);
+      text-align: center;
+    }
+  }
+}

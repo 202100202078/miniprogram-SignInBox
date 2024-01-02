@@ -52,6 +52,9 @@
               <view class="info2-tea">缺勤：5人</view>
             </block>
           </view>
+          <view class="right" hidden="{{!isShowCourse}}">
+            <van-icon name="arrow" />
+          </view>
         </view>
       </block>
   </view>

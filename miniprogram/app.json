@@ -6,7 +6,10 @@
     "pages/index/index",
     "pages/features/features",
     "pages/editUserInfo/editUserInfo",
-    "pages/editCourse/editCourse"
+    "pages/editCourse/editCourse",
+    "pages/courseIndex/courseIndex",
+    "pages/courseInfo/courseInfo",
+    "pages/qrcodeIndex/qrcodeIndex"
   ],
   "tabBar": {
     "borderStyle": "black",
@@ -56,8 +59,8 @@
     "van-toast": "@vant/weapp/toast/index",
     "van-dialog": "@vant/weapp/dialog/index",
     "van-icon": "@vant/weapp/icon/index",
-    "van-field": "@vant/weapp/field/index"
-    
+    "van-field": "@vant/weapp/field/index",
+    "van-empty": "@vant/weapp/empty/index"
 
   }
 }

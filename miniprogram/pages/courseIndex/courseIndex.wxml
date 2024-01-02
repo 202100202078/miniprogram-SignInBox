@@ -1,0 +1,37 @@
+<view class="my-container">
+  <view class="header">
+    <view class="top">
+      <view class="center">
+        <text class="courseName">课程名</text>
+        <text class="semesterName">学期名</text>
+      </view>
+      <view class="right">设置</view>
+    </view>
+    <view class="bottom">
+      <view class="avatar">
+        <van-image
+        round
+        width="100rpx"
+        height="100rpx"
+        src="https://img.yzcdn.cn/vant/cat.jpeg"
+        fit="cover"
+      />
+      </view>
+      <view class="userInfo">
+        <text class="uname">用户名</text>
+        <text class="role">role</text>
+      </view>
+    </view>
+  </view>
+  <view class="features">
+    <view class="featureItem">item</view>
+    <view class="featureItem">item</view>
+    <view class="featureItem">item</view>
+    <view class="featureItem">item</view>
+    <view class="featureItem">item</view>
+    <view class="featureItem">item</view>
+    <view class="featureItem">item</view>
+    <view class="featureItem">item</view>
+    <view class="featureItem">item</view>
+  </view>
+</view>

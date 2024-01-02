@@ -37,9 +37,15 @@ Page({
   showDetail() {
     if(!this.data.isTeacher) return;
     // 携带当前课程id作为参数进入detail页面
-    wx.navigateTo({
-      url: '/pages/course/detail',
-    })
+    if(!this.data.isShowCourse) {
+      wx.navigateTo({
+        url: '/pages/course/detail',
+      })
+    }else {
+      wx.navigateTo({
+        url: '/pages/courseInfo/courseInfo',
+      })
+    }
   },
   onChooseAvatar(e) {
     const { avatarUrl } = e.detail 

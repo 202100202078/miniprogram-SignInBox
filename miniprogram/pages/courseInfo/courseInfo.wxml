@@ -1,0 +1,30 @@
+<view class="my-container">
+  <view class="header">
+    <view class="top-show">
+      <text class="courseName">课程名</text>
+      <view class="course-info">
+        <text>共0人</text>
+        <text class="second">班级码：</text>
+        <text class="code">{{courseCode}}</text>
+      </view>
+    </view>
+    <view class="bottom">
+      <view class="bottom-btn">
+        <van-button type="primary" size="small" bind:tap="toQRIndex">班级二维码</van-button>
+      </view>
+      <view class="bottom-search">
+        <input type="text" placeholder="输入学生姓名" class="my-input"/>
+        <van-button type="info" size="small">搜索</van-button>
+      </view>
+    </view>
+  </view>
+  <view class="stu-list-show">
+    <van-empty class="empty-show">
+      <view slot="description">
+        <view>当前班级还没有学生</view>
+        <view>您可以点击“班级二维码”</view>
+        <view>让学生快速扫码加入班级</view>
+      </view>
+    </van-empty>
+  </view>
+</view>
