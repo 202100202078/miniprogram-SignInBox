@@ -1,7 +1,7 @@
 <view class="my-container">
   <view class="header">
     <view class="top-show">
-      <text class="courseName">课程名</text>
+      <text class="courseName">{{courseName}}</text>
       <view class="course-info">
         <text>共0人</text>
         <text class="second">班级码：</text>

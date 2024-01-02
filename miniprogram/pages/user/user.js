@@ -46,7 +46,7 @@ Page({
       })
     }else {
       wx.navigateTo({
-        url: `/pages/courseInfo/courseInfo?_id=${obj.semesterId}&courseId=${course.courseId}&courseCode=${course.courseCode}&courseName=${course.courseName}`,
+        url: `/pages/courseInfo/courseInfo?_id=${obj.semesterid}&courseId=${course.courseId}&courseCode=${course.courseCode}&courseName=${course.courseName}`,
       })
     }
   },

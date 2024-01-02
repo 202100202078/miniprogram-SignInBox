@@ -31,7 +31,7 @@ exports.main = async (event, context) => {
           courseCode:generateRandomCode(),
           lastForWeek:{start:'未定义',end:'未定义'},
           section:{start:'未定义',end:'未定义'},
-          dayOfWeek:'未定义',
+          dayOfWeek:'星期几',
           classroom:'未定义'
         })
       } 

@@ -16,12 +16,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    wx.cloud.callFunction({
-      name:'createCourseCode'
-    }).then(res=>{
-      this.setData({
-        courseCode:res.result.code
-      })
+    const {courseCode,courseName,_id,courseId} = options
+    console.log(options);
+    this.setData({
+      courseCode,
+      courseName,
+      _id,
+      courseId
     })
   },
 
