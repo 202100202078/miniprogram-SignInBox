@@ -58,7 +58,7 @@ Page({
         ]
       },
     ],
-    isTeacher:true,
+    isTeacher:false,
     showSemester:false,
     showEditSemester:false,
     showRename:false,
@@ -268,8 +268,11 @@ Page({
       // console.log(res);
       Toast.success('操作成功');
       this.setData({
-        showAddCourse:false
+        showAddCourse:false,
+        courseDescInput:'',
+        courseNameInput:''
       })
+      wx.showTabBar()
     })
 
   },

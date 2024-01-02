@@ -34,16 +34,19 @@ Page({
       })
     }
   },
-  showDetail() {
+  showDetail(e) {
     if(!this.data.isTeacher) return;
     // 携带当前课程id作为参数进入detail页面
+    const obj = e.target.dataset
+    // console.log(e.target.dataset);
+    const course = obj.course
     if(!this.data.isShowCourse) {
       wx.navigateTo({
-        url: '/pages/course/detail',
+        url: `/pages/course/detail`,
       })
     }else {
       wx.navigateTo({
-        url: '/pages/courseInfo/courseInfo',
+        url: `/pages/courseInfo/courseInfo?_id=${obj.semesterId}&courseId=${course.courseId}&courseCode=${course.courseCode}&courseName=${course.courseName}`,
       })
     }
   },

@@ -31,15 +31,15 @@
   <view class="semesterItem" wx:for="{{semesterAndCourseData}}" wx:key="_id" wx:for-item="semester">
       <view class="semesterName">{{semester.semesterName}}</view>
       <block wx:for="{{semester.courses}}" wx:for-item="course" wx:key="courseId">
-        <view class="cell"  bind:tap="showDetail">
+        <view class="cell" bind:tap="showDetail" data-course="{{course}}" data-semesterId="{{semester._id}}">
           <view class="left">
             <view class="title">{{course.courseName}}</view>
             <view class="label">
               <view class="info">第{{course.lastForWeek.start}}-{{course.lastForWeek.end}}周|{{course.dayOfWeek}}|第{{course.section.start}}-{{course.section.end}}节</view>
-              <view class="info">{{course.tname}}|{{course.classroom}}</view>
+              <view class="info">{{course.tname}}|{{course.classroom||'未定义'}}</view>
             </view>
           </view>
-          <view class="right" hidden="{{isShowCourse}}">
+          <view class="right" hidden="{{isShowCourse}}"> 
             <block wx:if="{{role==='student'}}">
               <view class="date-stu">2023/12/11</view>
               <view class="time-stu">20:47:33</view>

@@ -13,7 +13,7 @@ exports.main = async (event, context) => {
   try {
     return await db.collection('courses')
     .where({
-      'courses.teacherId':wxContext.OPENID
+      'teacherId':wxContext.OPENID
     })
     .orderBy('semesterName','desc')
     .get()

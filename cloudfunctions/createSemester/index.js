@@ -12,6 +12,7 @@ exports.main = async (event, context) => {
     .add({
       data: {
         semesterName:event.semesterName,
+        teacherId:wxContext.OPENID,
         courses:[]
       }
     })
