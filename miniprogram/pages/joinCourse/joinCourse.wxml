@@ -1,0 +1,16 @@
+<view class="my-container">
+  <view class="form">
+      <van-cell-group>
+        <van-field
+          model:value="{{ courseCode }}"
+          required
+          clearable
+          label="班级码"
+          placeholder="请输入6位班级码"
+        />
+    </van-cell-group>
+  </view>
+  <view class="btn">
+    <van-button type="info" round size="large" bind:tap="confirmJoinCourse">加入班级</van-button>
+  </view>
+</view>

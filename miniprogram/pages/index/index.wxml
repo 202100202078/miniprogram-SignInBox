@@ -4,7 +4,7 @@
   <!-- <van-button type="warning" size="large" round bind:tap="triggerIdentity">{{!isTeacher?'切换为老师':'切换为学生'}}</van-button> -->
   <!-- <view class="btns-inner"> -->
     <block wx:if="{{!isTeacher}}">
-      <van-button type="info" size="large" round>加入课程</van-button>
+      <van-button type="info" size="large" round bind:tap="toJoinCourse">加入课程</van-button>
     </block>
     <block wx:else>
       <van-button 
