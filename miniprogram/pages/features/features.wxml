@@ -1,13 +1,23 @@
 <van-action-sheet
   show="{{ showCourseChoice }}"
-  actions="{{ actions }}"
+  actions="{{ courseActions }}"
   description="请选择考勤课程"
   bind:close="onCloseCourseChoice"
   bind:select="onSelectCourse"
   bind:cancel="onCloseCourseChoice"
   cancel-text="取消"
 />
-<van-cell title="班级" is-link value="未选择" bind:tap="onShowCourseChoice"/>
+<van-action-sheet
+  show="{{ showSemesterChoice }}"
+  actions="{{ semesterActions }}"
+  description="请选择学期"
+  bind:close="onCloseSemesterChoice"
+  bind:select="onSelectSemester"
+  bind:cancel="onCloseSemesterChoice"
+  cancel-text="取消"
+/>
+<van-cell title="学期" is-link value="未选择" bind:tap="onShowSemesterChoice"/>
+<van-cell title="课程" is-link value="未选择" bind:tap="onShowCourseChoice"/>
 
 
 <van-grid column-num="3" border="{{ true }}" square>

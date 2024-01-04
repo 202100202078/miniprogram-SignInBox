@@ -10,8 +10,7 @@
     "pages/courseIndex/courseIndex",
     "pages/courseInfo/courseInfo",
     "pages/qrcodeIndex/qrcodeIndex",
-    "pages/joinCourse/joinCourse",
-    "pages/signInCodeIndex/signInCodeIndex"
+    "pages/joinCourse/joinCourse"
   ],
   "tabBar": {
     "borderStyle": "black",
