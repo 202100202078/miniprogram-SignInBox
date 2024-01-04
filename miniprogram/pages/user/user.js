@@ -70,6 +70,8 @@ Page({
       this.setData({
         semesterAndCourseData:res.result.data
       })
+      this.setCourseInfo(res.result.data)
+      // console.log(res.result.data);
     })
   },
   /**
@@ -79,7 +81,7 @@ Page({
     this.storeBindings = createStoreBindings(this,{
       store,
       fields: ['role'],
-      actions: ['setAvatarUrl','setUname','setUserInfo'],
+      actions: ['setAvatarUrl','setUname','setUserInfo','setCourseInfo'],
     })
   },
 

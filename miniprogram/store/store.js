@@ -6,6 +6,10 @@ export const store = observable({
   avatarUrl:'',
   role: '',
   userInfo: {},
+  semesterAndCourseData:[],
+  setCourseInfo:action(function(courseInfo){
+    this.semesterAndCourseData = courseInfo
+  }),
   setUserInfo:action(function(newValue){
     this.userInfo = newValue
   }),

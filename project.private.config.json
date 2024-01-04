@@ -6,6 +6,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/signInCodeIndex/signInCodeIndex",
+          "pathName": "/pages/signInCodeIndex/signInCodeIndex",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/qrcodeIndex/qrcodeIndex",
           "pathName": "pages/qrcodeIndex/qrcodeIndex",
           "query": "",

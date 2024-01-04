@@ -1,18 +1,47 @@
 // pages/features/features.js
+import { createStoreBindings } from 'mobx-miniprogram-bindings'
+import {store} from '../../store/store.js'
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    showCourseChoice: false,
+    actions: [
+      {
+        name: '选项',
+      },
+      {
+        name: '选项',
+      },
+      {
+        name: '选项',
+      },
+    ],
   },
-
+  onShowCourseChoice() {
+    // console.log(1);
+    this.setData({
+      showCourseChoice:true
+    })
+    wx.hideTabBar()
+  },
+  onCloseCourseChoice() {
+    this.setData({
+      showCourseChoice:false
+    })
+    wx.showTabBar()
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    this.storeBindings = createStoreBindings(this,{
+      store,
+      fields: ['semesterAndCourseData']
+    })
   },
 
   /**
@@ -21,6 +50,10 @@ Page({
   onReady() {
     wx.setNavigationBarTitle({
       title: '签到',
+    })
+    // console.log(this.data.semesterAndCourseData);
+    this.data.semesterAndCourseData.map((semester,index)=>{
+      console.log(semester.semesterName);
     })
   },
 

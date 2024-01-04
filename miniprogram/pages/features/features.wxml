@@ -1,2 +1,18 @@
-<!--pages/features/features.wxml-->
-<text>pages/features/features.wxml</text>
+<van-action-sheet
+  show="{{ showCourseChoice }}"
+  actions="{{ actions }}"
+  description="请选择考勤课程"
+  bind:close="onCloseCourseChoice"
+  bind:select="onSelectCourse"
+  bind:cancel="onCloseCourseChoice"
+  cancel-text="取消"
+/>
+<van-cell title="班级" is-link value="未选择" bind:tap="onShowCourseChoice"/>
+
+
+<van-grid column-num="3" border="{{ true }}" square>
+  <van-grid-item icon="photo-o" text="签到码签到" link-type="navigateTo"
+    url="/pages/signInCodeIndex/signInCodeIndex"/>
+  <van-grid-item icon="qr" text="二维码签到" />
+  <van-grid-item icon="location-o" text="定位签到" />
+</van-grid>
