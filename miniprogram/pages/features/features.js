@@ -8,11 +8,15 @@ Page({
    * 页面的初始数据
    */
   data: {
+    duration:'30s',
+    refresh:'不刷新',
     activeMode:0,
-    semester:{},
-    course:{},
+    semester:{name:'未选择'},
+    course:{name:'未选择'},
     showCourseChoice: false,
     showSemesterChoice: false,
+    showRefreshChoice:false,
+    showDurationChoice:false,
     courseActions: [
       {
         name: '选项',
@@ -37,6 +41,52 @@ Page({
         name: '选项',
       },
     ],
+    durationActions: [
+      {
+        name: '15s',
+      },
+      {
+        name: '30s',
+      },
+      {
+        name: '60s',
+      },
+      {
+        name: '2min',
+      },
+      {
+        name: '5min',
+      },
+      {
+        name: '10min',
+      },
+    ],
+    refreshActions: [
+      {
+        name: '不刷新'
+      },
+      {
+        name: '每隔15s刷新',
+      },
+      {
+        name: '每隔30s刷新',
+      },
+      {
+        name: '每隔60s刷新',
+      },
+    ],
+  },
+  onShowDurationChoice() {
+    this.setData({
+      showDurationChoice:true
+    })
+    wx.hideTabBar()
+  },
+  onShowRefreshChoice() {
+    this.setData({
+      showRefreshChoice:true
+    })
+    wx.hideTabBar()
   },
   onShowCourseChoice() {
     // console.log(1);
@@ -64,6 +114,18 @@ Page({
     })
     wx.showTabBar()
   },
+  onCloseDurationChoice() {
+    this.setData({
+      showDurationChoice:false
+    })
+    wx.showTabBar()
+  },
+  onCloseRefreshChoice() {
+    this.setData({
+      showRefreshChoice:false
+    })
+    wx.showTabBar()
+  },
   onSelectCourse(e) {
     // console.log(e.detail);
     this.setData({
@@ -74,6 +136,18 @@ Page({
     // console.log(e.detail);
     this.setData({
       semester:e.detail
+    })
+  },
+  onSelectDuration(e) {
+    // console.log(e.detail);
+    this.setData({
+      duration:e.detail
+    })
+  },
+  onSelectRefresh(e) {
+    // console.log(e.detail);
+    this.setData({
+      refresh:e.detail
     })
   },
   onSignCode() {

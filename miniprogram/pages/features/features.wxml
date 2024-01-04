@@ -16,8 +16,26 @@
   bind:cancel="onCloseSemesterChoice"
   cancel-text="取消"
 />
-<van-cell title="学期" is-link value="未选择" bind:tap="onShowSemesterChoice"/>
-<van-cell title="课程" is-link value="未选择" bind:tap="onShowCourseChoice"/>
+<van-action-sheet
+  show="{{ showDurationChoice }}"
+  actions="{{ durationActions }}"
+  description="有效时间选择"
+  bind:close="onCloseDurationChoice"
+  bind:select="onSelectDuration"
+  bind:cancel="onCloseDurationChoice"
+  cancel-text="取消"
+/>
+<van-action-sheet
+  show="{{ showRefreshChoice }}"
+  actions="{{ refreshActions }}"
+  description="自动刷新选择"
+  bind:close="onCloseRefreshChoice"
+  bind:select="onSelectRefresh"
+  bind:cancel="onCloseRefreshChoice"
+  cancel-text="取消"
+/>
+<van-cell value-class="cellValueStyle" title="学期" is-link value="{{semester.name}}" bind:tap="onShowSemesterChoice"/>
+<van-cell value-class="cellValueStyle" title="课程" is-link value="{{course.name}}" bind:tap="onShowCourseChoice"/>
 
 
 <van-grid column-num="3" border="{{ true }}" square>
@@ -28,3 +46,5 @@
   <van-grid-item icon="location-o" text="定位签到"  bind:tap="onSignPosition"
   custom-class="{{activeMode===2?'active':''}}"/>
 </van-grid>
+<van-cell value-class="cellValueStyle" title="有效时间" is-link value="{{duration}}" bind:tap="onShowDurationChoice"/>
+<van-cell value-class="cellValueStyle" wx:if="{{activeMode===1}}" title="自动刷新" is-link value="{{refresh}}" bind:tap="onShowRefreshChoice"/>
