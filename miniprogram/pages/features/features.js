@@ -174,7 +174,11 @@ Page({
       })
       return 
     }
-    
+    if(this.data.activeMode===0) {
+      wx.navigateTo({
+        url: '/pages/signInCodeIndex/signInCodeIndex',
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载

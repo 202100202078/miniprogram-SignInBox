@@ -10,7 +10,8 @@
     "pages/courseIndex/courseIndex",
     "pages/courseInfo/courseInfo",
     "pages/qrcodeIndex/qrcodeIndex",
-    "pages/joinCourse/joinCourse"
+    "pages/joinCourse/joinCourse",
+    "pages/signInCodeIndex/signInCodeIndex"
   ],
   "tabBar": {
     "borderStyle": "black",
@@ -65,7 +66,9 @@
     "van-notify": "@vant/weapp/notify/index",
     "van-grid": "@vant/weapp/grid/index",
     "van-grid-item": "@vant/weapp/grid-item/index",
-    "van-action-sheet": "@vant/weapp/action-sheet/index"
+    "van-action-sheet": "@vant/weapp/action-sheet/index",
+    "van-divider": "@vant/weapp/divider/index",
+    "van-count-down": "@vant/weapp/count-down/index"
 
   }
 }

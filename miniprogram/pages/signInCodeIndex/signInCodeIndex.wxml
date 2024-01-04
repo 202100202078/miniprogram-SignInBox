@@ -1,2 +1,28 @@
-<!--pages/signInCodeIndex/signInCodeIndex.wxml-->
-<text>pages/signInCodeIndex/signInCodeIndex.wxml</text>
+<view class="my-container">
+  <view class="courseName">课程名</view>
+  <view class="timeShow">2024-01-04 20:07 星期四</view>
+  <view class="main">
+    <view class="title">签到码</view>
+    <view class="signCode">6749</view>
+    <view class="timeDown">
+      <van-count-down use-slot time="{{ time }}" bind:change="onChange">
+        <text class="text-style">距离签到结束还剩：</text>
+        <text class="item">{{ timeData.hours }}</text>
+        <text class="item">{{ timeData.minutes }}</text>
+        <text class="item">{{ timeData.seconds }}</text>
+      </van-count-down>
+    </view>
+  </view>
+  <view class="Attendance">
+    已签到人数<text class="attend">0</text>
+  </view>
+  <view class="Absence">
+    未签到人数<text class="absence">0</text>
+  </view>
+  <view class="btn">
+    <van-button type="info" size="large" round>放弃</van-button>
+  </view>
+  <view class="btn">
+    <van-button type="danger" size="large" round>结束</van-button>
+  </view>
+</view>

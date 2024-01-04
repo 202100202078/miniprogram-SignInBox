@@ -5,9 +5,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    time: 30 * 60 * 60 * 1000,
+    timeData: {},
   },
-
+  onChange(e) {
+    // console.log(e.detail);
+    this.setData({
+      timeData: e.detail,
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */

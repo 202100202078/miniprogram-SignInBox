@@ -1,1 +1,62 @@
 /* pages/signInCodeIndex/signInCodeIndex.wxss */
+
+.my-container {
+  .courseName {
+    background-color: skyblue;
+    text-align: center;
+  }
+  .timeShow {
+    padding: 36rpx;
+    border-bottom: 1px solid slategrey;
+    color: slategrey;
+  }
+  .main {
+    padding: 36rpx;
+    .title {
+      text-align: center;
+      color: #000;
+      font-weight: bold;
+      font-size: 48rpx;
+    }
+    .signCode {
+      margin-bottom: 16rpx;
+      text-align: center;
+      color: steelblue;
+      font-weight: bold;
+      font-size: 88rpx;
+      letter-spacing: 16rpx;
+    }
+    .timeDown {
+      .item {
+        display: inline-block;
+        width: 22px;
+        margin-right: 5px;
+        color: #fff;
+        font-size: 12px;
+        text-align: center;
+        background-color: #1989fa;
+        border-radius: 2px;
+      }
+    }
+  }
+  .Attendance {
+    font-size: 48rpx;
+    text-align: center;
+    .attend {
+      margin-left: 16rpx;
+      color: green;
+    }
+  }
+  .Absence {
+    font-size: 48rpx;
+    text-align: center;
+    .absence {
+      margin-left: 16rpx;
+      color: red;
+    }
+  }
+  .btn {
+    padding: 16rpx;
+   }
+}
+
