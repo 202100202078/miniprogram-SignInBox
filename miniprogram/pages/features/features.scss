@@ -5,3 +5,12 @@
 .cellValueStyle {
   color: skyblue;
 }
+
+.my-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .btn {
+    padding: 16rpx;
+  }
+}

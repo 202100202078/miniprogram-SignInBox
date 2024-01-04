@@ -1,6 +1,8 @@
 // pages/features/features.js
 import { createStoreBindings } from 'mobx-miniprogram-bindings'
 import {store} from '../../store/store.js'
+import Notify from '@vant/weapp/notify/notify';
+
 
 Page({
 
@@ -164,6 +166,15 @@ Page({
     this.setData({
       activeMode:2
     })
+  },
+  confirmSignIn() {
+    if((this.data.semester.name==='未选择'||this.data.course.name==='未选择')) {
+      wx.showToast({
+        title: '请选择一门课程',
+      })
+      return 
+    }
+    
   },
   /**
    * 生命周期函数--监听页面加载
