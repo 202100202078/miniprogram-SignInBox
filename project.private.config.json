@@ -8,7 +8,7 @@
         {
           "name": "pages/signInCodeIndex/signInCodeIndex",
           "pathName": "/pages/signInCodeIndex/signInCodeIndex",
-          "query": "",
+          "query": "courseName=qqqqq&courseId=0&duration=10min",
           "launchMode": "default",
           "scene": null
         },

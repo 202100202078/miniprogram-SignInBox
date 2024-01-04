@@ -143,7 +143,7 @@ Page({
   onSelectDuration(e) {
     // console.log(e.detail);
     this.setData({
-      duration:e.detail
+      duration:e.detail.name
     })
   },
   onSelectRefresh(e) {
@@ -175,29 +175,15 @@ Page({
       return 
     }
     if(this.data.activeMode===0) {
+      const courseName = this.data.course.name
+      const courseId = this.data.course.courseId
+      const duration = this.data.duration
       wx.navigateTo({
-        url: '/pages/signInCodeIndex/signInCodeIndex',
+        url: `/pages/signInCodeIndex/signInCodeIndex?courseName=${courseName}&courseId=${courseId}&duration=${duration}`,
       })
     }
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-    this.storeBindings = createStoreBindings(this,{
-      store,
-      fields: ['semesterAndCourseData']
-    })
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-    wx.setNavigationBarTitle({
-      title: '签到',
-    })
-    // console.log(this.data.semesterAndCourseData);
+  _getSemesterActionAndCourseAction() {
     const tempSemester = this.data.semesterAndCourseData.map((semester,index)=>{
       // console.log(semester.semesterName);
       return {
@@ -224,12 +210,31 @@ Page({
       courseActions:tempCourse
     })
   },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad(options) {
+    this.storeBindings = createStoreBindings(this,{
+      store,
+      fields: ['semesterAndCourseData']
+    })
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady() {
+    wx.setNavigationBarTitle({
+      title: '签到',
+    })
+    // console.log(this.data.semesterAndCourseData);
+    this._getSemesterActionAndCourseAction()
+  },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
   },
 
   /**
