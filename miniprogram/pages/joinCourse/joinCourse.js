@@ -1,4 +1,6 @@
 // pages/joinCourse/joinCourse.js
+import Notify from '@vant/weapp/notify/notify';
+
 Page({
 
   /**
@@ -8,7 +10,24 @@ Page({
     courseCode:''
   },
   confirmJoinCourse() {
-    
+    wx.cloud.callFunction({
+      name:'joinCourse',
+      data:{
+        courseCode:this.data.courseCode
+      }
+    }).then(res=>{
+      console.log(res);
+      this.setData({
+        courseCode:''
+      })
+      // console.log(res.result.msg);
+      Notify({type:'primary',message:res.result.msg || '操作成功',duration: 1000})
+      if(!res.result.msg){
+        setTimeout(()=>{
+          wx.navigateBack()
+        },1500)
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面加载

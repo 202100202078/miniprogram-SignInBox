@@ -14,3 +14,4 @@
     <van-button type="info" round size="large" bind:tap="confirmJoinCourse">加入班级</van-button>
   </view>
 </view>
+<van-notify id="van-notify" />

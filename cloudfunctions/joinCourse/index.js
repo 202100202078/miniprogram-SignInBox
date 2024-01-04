@@ -7,6 +7,22 @@ cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV }) // 使用当前云环境
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
   const db = cloud.database()
+
+  // 班级码找不到的情况
+  const hasCourseCodeRes = await db.collection('courses').where({
+    'courses.courseCode':event.courseCode
+  }).get()
+  const hasCourseCode = hasCourseCodeRes.data.length === 1
+  if(!hasCourseCode) {
+    try {
+      return {
+        msg:'不存在该班级'
+      }
+    }catch(e) {
+      console.log(e);
+    }
+  } 
+
   // 获取到当前班级码所在班级信息
   const res = await db.collection('courses').where({
     'courses.courseCode':event.courseCode
