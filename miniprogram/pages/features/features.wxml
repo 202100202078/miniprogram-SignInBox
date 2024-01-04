@@ -21,8 +21,10 @@
 
 
 <van-grid column-num="3" border="{{ true }}" square>
-  <van-grid-item icon="photo-o" text="签到码签到" link-type="navigateTo"
-    url="/pages/signInCodeIndex/signInCodeIndex"/>
-  <van-grid-item icon="qr" text="二维码签到" />
-  <van-grid-item icon="location-o" text="定位签到" />
+  <van-grid-item icon="photo-o" text="签到码签到" bind:tap="onSignCode"
+  custom-class="{{activeMode===0?'active':''}}" />
+  <van-grid-item icon="qr" text="二维码签到"  bind:tap="onSignQR"
+  custom-class="{{activeMode===1?'active':''}}" />
+  <van-grid-item icon="location-o" text="定位签到"  bind:tap="onSignPosition"
+  custom-class="{{activeMode===2?'active':''}}"/>
 </van-grid>

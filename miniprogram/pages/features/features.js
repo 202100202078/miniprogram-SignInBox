@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    activeMode:0,
     semester:{},
     course:{},
     showCourseChoice: false,
@@ -73,6 +74,21 @@ Page({
     // console.log(e.detail);
     this.setData({
       semester:e.detail
+    })
+  },
+  onSignCode() {
+    this.setData({
+      activeMode:0
+    })
+  },
+  onSignQR() {
+    this.setData({
+      activeMode:1
+    })
+  },
+  onSignPosition() {
+    this.setData({
+      activeMode:2
     })
   },
   /**
