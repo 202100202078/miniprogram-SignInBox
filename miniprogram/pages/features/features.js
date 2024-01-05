@@ -178,8 +178,9 @@ Page({
       const courseName = this.data.course.name
       const courseId = this.data.course.courseId
       const duration = this.data.duration
+      const semesterId = this.data.semester.semesterId
       wx.navigateTo({
-        url: `/pages/signInCodeIndex/signInCodeIndex?courseName=${courseName}&courseId=${courseId}&duration=${duration}`,
+        url: `/pages/signInCodeIndex/signInCodeIndex?courseName=${courseName}&courseId=${courseId}&duration=${duration}&semesterId=${semesterId}`,
       })
     }
   },
@@ -196,7 +197,8 @@ Page({
     })
     let tempCourse = []
     for(let i=0;i<this.data.semesterAndCourseData.length;i++) {
-      const tempObj = this.data.semesterAndCourseData[i].courses.map((course,index)=>{
+      // console.log(this.data.semesterAndCourseData[i]._id,);
+        const tempObj = this.data.semesterAndCourseData[i].courses.map((course,index)=>{
         // console.log(semester.semesterName);
         return {
           courseId: course.courseId,

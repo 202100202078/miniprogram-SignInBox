@@ -5,6 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    semesterId:'',
+    courseId:0,
     signInCode:'',
     date:'',
     courseName:'课程名',
@@ -51,7 +53,9 @@ Page({
     this.setData({
       courseName:options.courseName,
       duration:options.duration,
-      signInCode
+      signInCode,
+      courseId:options.courseId,
+      semesterId:options.semesterId
     })
     this._setTime()
     this._getDate()
