@@ -35,7 +35,7 @@
     cancel-text="取消"
   />
 
-<view class="my-container">
+<view class="my-container" wx:if="{{role==='teacher'}}">
   <view class="form">
     <van-cell value-class="cellValueStyle" title="学期" is-link value="{{semester.name}}" bind:tap="onShowSemesterChoice"/>
     <van-cell value-class="cellValueStyle" title="课程" is-link value="{{course.name}}" bind:tap="onShowCourseChoice"/>
@@ -52,5 +52,28 @@
   </view>
   <view class="btn">
     <van-button type="info" size="large" round bind:tap="confirmSignIn">开始签到</van-button>
+  </view>
+</view>
+
+<view wx:else class="my-container-stu">
+  <view class="title">请输入数字，手动完成签到</view>
+  <view class="desc">（数字由教师获取并告知）</view>
+  <view class="my-input">
+    <van-field
+      model:value="{{ signInStuInputCode }}"
+      center
+      clearable
+      label="签到码"
+      placeholder="请输入您的签到码"
+      border="{{ false }}"
+      use-button-slot
+    >
+      <van-button slot="button" size="small" type="primary" bind:tap="onConfirmStuSignInWithCode">
+        签到码签到
+      </van-button>
+    </van-field>
+  </view>
+  <view class="opsition-btn">
+    <van-button type="info" size="large" round>定位签到</van-button>  
   </view>
 </view>

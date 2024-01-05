@@ -17,7 +17,7 @@ Page({
    */
   onLoad(options) {
     const {courseCode,courseName,_id,courseId} = options
-    console.log(options);
+    // console.log(options);
     this.setData({
       courseCode,
       courseName,
@@ -30,7 +30,9 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-
+    wx.setNavigationBarTitle({
+      title: '班级详情',
+    })
   },
 
   /**

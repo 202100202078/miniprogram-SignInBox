@@ -14,3 +14,21 @@
     padding: 16rpx;
   }
 }
+
+.my-container-stu {
+  padding-top: 36rpx;
+  .title {
+    text-align: center;
+    font-size: 44rpx;
+  }
+  .desc {
+    margin: 26rpx 0;
+    text-align: center;
+    font-size: 32rpx;
+    color: grey;
+  }
+  .opsition-btn {
+    padding-top: 16rpx;
+    margin-top: 36rpx;
+  }
+}

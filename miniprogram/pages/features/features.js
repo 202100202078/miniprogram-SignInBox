@@ -10,6 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    signInStuInputCode:'',
     duration:'30s',
     refresh:'不刷新',
     activeMode:0,
@@ -77,6 +78,11 @@ Page({
         name: '每隔60s刷新',
       },
     ],
+  },
+  onConfirmStuSignInWithCode() {
+    if(this.data.signInStuInputCode==='')return
+    //学生端发起签到
+
   },
   onShowDurationChoice() {
     this.setData({
@@ -218,7 +224,7 @@ Page({
   onLoad(options) {
     this.storeBindings = createStoreBindings(this,{
       store,
-      fields: ['semesterAndCourseData']
+      fields: ['semesterAndCourseData','role']
     })
   },
 
