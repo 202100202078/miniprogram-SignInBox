@@ -32,7 +32,19 @@ Page({
   },
   onFinishTime() {
     // 将当前签到的isFinish字段修改为true
-
+    wx.cloud.callFunction({
+      name:'setSignInFinishWithCode',
+      data:{
+        _id:this.data.signInId
+      }
+    }).then(res=>{
+      setTimeout(()=>{
+        wx.switchTab({
+          url: '/pages/user/user',
+        })
+      },1500)
+    })
+    clearInterval(this.data.timer)
   },
   async onAbandonFn() {
     // 删除当前的签到记录
