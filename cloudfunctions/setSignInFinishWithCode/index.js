@@ -7,15 +7,10 @@ cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV }) // 使用当前云环境
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
   const db = cloud.database()
-  try {
-    return await db.collection('signin').add({
+  try{
+    return await db.collection('signin').doc(event._id).update({
       data:{
-        absenceNum:0,
-        attendNum:0,
-        signInCode:event.signInCode,
-        totalNum:0,
-        isFinish:false,
-        teacherId:wxContext.OPENID
+        isFinish:true
       }
     })
   }catch(e) {

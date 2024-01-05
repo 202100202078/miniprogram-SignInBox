@@ -5,6 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    timer:'',
+    signInId:'',
     semesterId:'',
     courseId:0,
     signInCode:'',
@@ -13,6 +15,7 @@ Page({
     duration:'',
     time: 1 * 30 * 60 * 1000,
     timeData: {},
+    totalNum:0
   },
   onChange(e) {
     // console.log(e.detail);
@@ -28,8 +31,43 @@ Page({
     return code;
   },
   onFinishTime() {
+    // 将当前签到的isFinish字段修改为true
 
   },
+  async onAbandonFn() {
+    // 删除当前的签到记录
+    const res = wx.cloud.callFunction({
+      name:'abandonSign',
+      data:{
+        _id:this.data.signInId
+      }
+    })
+    wx.showToast({
+      title: '操作成功',
+    })
+    setTimeout(()=>{
+      wx.navigateBack()
+    },1500)
+  },
+  onFinishSignFn() {
+    wx.cloud.callFunction({
+      name:'setSignInFinishWithCode',
+      data:{
+        _id:this.data.signInId
+      }
+    }).then(res=>{
+      wx.showToast({
+        title: '操作成功',
+      })
+      setTimeout(()=>{
+        wx.switchTab({
+          url: '/pages/user/user',
+        })
+      },1500)
+    })
+    clearInterval(this.data.timer)
+  },
+
   _getDate() {
     let myDate = new Date()
     const year =myDate.getFullYear()
@@ -44,10 +82,11 @@ Page({
     })
     // console.log(tempDate);
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
+  async onLoad(options) {
     // console.log(options);
     const signInCode = this.generateRandomNumberCode()
     this.setData({
@@ -59,6 +98,47 @@ Page({
     })
     this._setTime()
     this._getDate()
+    // 获取当前班级总人数
+    wx.cloud.callFunction({
+      name:'getCourseTotalNum',
+      data:{
+        semesterId:this.data.semesterId,
+        courseId:this.data.courseId
+      }
+    }).then(res=>{
+      this.setData({
+        totalNum:res.result.total
+      })
+    })
+    // 创建签到表的一条记录
+    const res = await wx.cloud.callFunction({
+      name:'createSignInWithCode',
+      data:{
+        absenceNum:0,
+        attendNum:0,
+        signInCode:signInCode,
+        totalNum:this.data.totalNum,
+        isFinish:false,
+      }
+    })
+      this.setData({
+        signInId:res.result._id
+      })
+    const timer = setInterval(async ()=>{
+      const res= await wx.cloud.callFunction({
+        name:'getSignNumWithCode',
+        data:{
+          _id:this.data.signInId
+        }
+      })
+      this.setData({
+        absenceNum:res.result.data.absenceNum,
+        attendNum:res.result.data.attendNum
+      })
+    },1500)
+    this.setData({
+      timer
+    })
   },
   _setTime() {
     let temp = 0
@@ -104,7 +184,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-
+    clearInterval(this.data.timer)
   },
 
   /**

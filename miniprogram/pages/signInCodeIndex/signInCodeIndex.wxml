@@ -20,9 +20,9 @@
     未签到人数<text class="absence">0</text>
   </view>
   <view class="btn">
-    <van-button type="info" size="large" round>放弃</van-button>
+    <van-button type="info" size="large" round bind:tap="onAbandonFn">放弃</van-button>
   </view>
   <view class="btn">
-    <van-button type="danger" size="large" round>结束</van-button>
+    <van-button type="danger" size="large" round bind:tap="onFinishSignFn">结束</van-button>
   </view>
 </view>
