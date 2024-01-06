@@ -134,7 +134,8 @@ Page({
         totalNum:this.data.totalNum,
         isFinish:false,
         semesterId:this.data.semesterId,
-        courseId:this.data.courseId
+        courseId:this.data.courseId,
+        createTime:this.data.date
       }
     })
       this.setData({

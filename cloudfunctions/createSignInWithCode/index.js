@@ -18,7 +18,8 @@ exports.main = async (event, context) => {
         signInCode:event.signInCode,
         totalNum:event.totalNum,
         isFinish:false,
-        teacherId:wxContext.OPENID
+        teacherId:wxContext.OPENID,
+        createTime:event.createTime
       }
     })
   }catch(e) {
