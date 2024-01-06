@@ -13,7 +13,7 @@ exports.main = async (event, context) => {
       userId: wxContext.OPENID
     })
     .update({
-      data: {
+      data: {// 更新用户名和头像
         avatarUrl: event.avatarUrl,
         uname:event.uname
       },

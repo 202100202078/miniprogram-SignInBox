@@ -77,3 +77,4 @@
     <van-button type="info" size="large" round>定位签到</van-button>  
   </view>
 </view>
+<van-notify id="van-notify" />

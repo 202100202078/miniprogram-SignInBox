@@ -110,18 +110,20 @@ Page({
     })
     this._setTime()
     this._getDate()
+
     // 获取当前班级总人数
-    wx.cloud.callFunction({
+    const totalNumRes = await wx.cloud.callFunction({
       name:'getCourseTotalNum',
       data:{
         semesterId:this.data.semesterId,
-        courseId:this.data.courseId
+        courseId:+this.data.courseId
       }
-    }).then(res=>{
-      this.setData({
-        totalNum:res.result.total
-      })
     })
+    this.setData({
+      totalNum:totalNumRes.result.total
+    })
+    // console.log(totalNumRes);
+
     // 创建签到表的一条记录
     const res = await wx.cloud.callFunction({
       name:'createSignInWithCode',
@@ -131,6 +133,8 @@ Page({
         signInCode:signInCode,
         totalNum:this.data.totalNum,
         isFinish:false,
+        semesterId:this.data.semesterId,
+        courseId:this.data.courseId
       }
     })
       this.setData({

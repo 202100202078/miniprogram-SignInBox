@@ -16,7 +16,7 @@ Page({
         courseCode:this.data.courseCode
       }
     }).then(res=>{
-      console.log(res);
+      // console.log(res);
       this.setData({
         courseCode:''
       })
@@ -40,7 +40,9 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-
+    wx.setNavigationBarTitle({
+      title: '加入课程',
+    })
   },
 
   /**

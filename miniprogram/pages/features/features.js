@@ -79,10 +79,19 @@ Page({
       },
     ],
   },
-  onConfirmStuSignInWithCode() {
+  async onConfirmStuSignInWithCode() {
     if(this.data.signInStuInputCode==='')return
     //学生端发起签到
-
+    const res = await wx.cloud.callFunction({
+      name:'stuSignInWithCode',
+      data:{
+        signInCode:this.data.signInStuInputCode
+      }
+    })
+    Notify({ type: 'primary', message: res.result.msg?res.result.msg:'签到成功' ,duration:1000});
+    this.setData({
+      signInStuInputCode:''
+    })
   },
   onShowDurationChoice() {
     this.setData({

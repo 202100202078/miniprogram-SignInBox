@@ -16,6 +16,7 @@ exports.main = async (event, context) => {
     userId: wxContext.OPENID
   }).limit(MAX_LIMIT).get()
   const hasUser = arr.data.length === 1
+  //用户是否已存在
   if(hasUser) {
     // 有则获取对应数据库记录进行渲染
     return {
@@ -39,15 +40,4 @@ exports.main = async (event, context) => {
       _openid: wxContext.OPENID,
     }
   }
-  // return {
-  //   hasUser,
-  //   _openid: wxContext.OPENID,
-  // }
-  // try{
-  //   return await db.collection('user').where({
-  //     openid: wxContext.OPENID
-  //   }).limit(MAX_LIMIT).get()
-  // } catch(e) {
-  //   console.log(e);
-  // }
 }

@@ -1,5 +1,5 @@
 <view class="cellList">
-  <view class="cell" wx:for="{{6}}" wx:key="index">
+  <view class="cell" wx:for="{{2}}" wx:key="index">
     <view class="left">
       汤姆逊
     </view>

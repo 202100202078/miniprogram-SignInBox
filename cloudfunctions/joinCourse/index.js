@@ -31,6 +31,7 @@ exports.main = async (event, context) => {
   const {courseCode,courseId} = res.data[0].courses[0]
   const semesterId = res.data[0]._id
   const stuId = wxContext.OPENID
+  const teaId = res.data[0].teacherId
 
   //判断用户是否已经存在班级中
   const isInCourseRes = await db.collection('courses_application').where({
@@ -56,7 +57,8 @@ exports.main = async (event, context) => {
           courseCode,
           courseId,
           stuId,
-          semesterId
+          semesterId,
+          teaId
         }
       })
     }catch(e) {
