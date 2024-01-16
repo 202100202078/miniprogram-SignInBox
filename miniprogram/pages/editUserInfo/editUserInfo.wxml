@@ -1,7 +1,7 @@
 <view class="my-container">
   <view class="form">
     <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
-      <image class="avatar" src="{{avatarUrl?avatarUrl:defaultAvatar}}"></image>
+      <image class="avatar" src="{{avatarUrl}}"></image>
     </button> 
       <van-cell-group>
         <van-field
@@ -17,3 +17,5 @@
     <van-button type="info" round size="large" bind:tap="confirmEditUserInfo">确认修改</van-button>
   </view>
 </view>
+
+<van-notify id="van-notify" />

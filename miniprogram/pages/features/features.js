@@ -106,7 +106,28 @@ Page({
     wx.hideTabBar()
   },
   onShowCourseChoice() {
-    // console.log(1);
+    // console.log(this.data.semester);
+    let tempCourse = []
+    const curSId = this.data.semester.semesterId
+    // 获取对应学期下的课程名
+    const idx = this.data.semesterAndCourseData.findIndex(ele=>ele._id===curSId)
+    if(idx===-1) {
+      Notify({
+        message: '请先选择学期',
+        duration: 1000,
+      });
+      return 
+    } 
+    tempCourse = this.data.semesterAndCourseData[idx].courses.map(ele=>{
+      return {
+        courseId:ele.courseId,
+        name:ele.courseName
+      }
+    })
+    this.setData({
+      courseActions:tempCourse
+    })
+
     this.setData({
       showCourseChoice:true
     })
@@ -210,22 +231,6 @@ Page({
     this.setData({
       semesterActions:tempSemester
     })
-    let tempCourse = []
-    for(let i=0;i<this.data.semesterAndCourseData.length;i++) {
-      // console.log(this.data.semesterAndCourseData[i]._id,);
-        const tempObj = this.data.semesterAndCourseData[i].courses.map((course,index)=>{
-        // console.log(semester.semesterName);
-        return {
-          courseId: course.courseId,
-          name: course.courseName 
-        }
-      })
-      // console.log(tempObj);
-      tempCourse = [...tempCourse,tempObj[0]]
-    }
-    this.setData({
-      courseActions:tempCourse
-    })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -233,7 +238,7 @@ Page({
   onLoad(options) {
     this.storeBindings = createStoreBindings(this,{
       store,
-      fields: ['semesterAndCourseData','role']
+      fields: ['semesterAndCourseData','userInfo']
     })
   },
 
@@ -246,6 +251,7 @@ Page({
     })
     // console.log(this.data.semesterAndCourseData);
     this._getSemesterActionAndCourseAction()
+    // console.log(this.data.userInfo);
   },
 
   /**

@@ -1,9 +1,9 @@
 // pages/editUserInfo/editUserInfo.js
 import { createStoreBindings } from 'mobx-miniprogram-bindings'
 import {store} from '../../store/store.js'
+import Notify from '@vant/weapp/notify/notify';
 
 const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
-
 
 Page({
 
@@ -12,8 +12,7 @@ Page({
    */
   data: {
     uname: '默认用户名',
-    avatarUrl: defaultAvatarUrl,
-    defaultAvatar:defaultAvatarUrl
+    avatarUrl: defaultAvatarUrl
   },
   onChooseAvatar(e) {
     // console.log(e.detail);
@@ -22,22 +21,25 @@ Page({
       avatarUrl,
     })
   },
-  confirmEditUserInfo() {
+  async confirmEditUserInfo() {
+    if(this.data.uname==='') {
+      Notify('用户名不能为空');
+      return
+    }
     // 修改对应用户数据库数据
-    wx.cloud.callFunction({
+    const res = wx.cloud.callFunction({
       name: 'editUserInfo',
       data:{
         avatarUrl:this.data.avatarUrl,
         uname:this.data.uname
       }
-    }).then(res=>{
-      console.log(res);
-      wx.navigateBack()
-      wx.showToast({
-        title: '修改成功',
-        duration: 1500
-      })
     })
+    wx.showToast({
+      title: '修改成功',
+    })
+    setTimeout(()=>{
+      wx.navigateBack()
+    },1500)
   },
   /**
    * 生命周期函数--监听页面加载

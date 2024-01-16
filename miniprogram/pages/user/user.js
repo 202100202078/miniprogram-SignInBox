@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    teaSignRecord:[],
     semesterAndCourseData:[],
     username:'用户名',
     avatarUrl: defaultAvatarUrl,
@@ -62,22 +63,19 @@ Page({
       }
     })
   },
-  _getCourseInfo() {
-    wx.cloud.callFunction({
+  async _getCourseInfo() {
+    const res = await wx.cloud.callFunction({
       name:'getCourseInfo'
-    }).then(res=>{
-      // console.log(res);
-      this.setData({
-        semesterAndCourseData:res.result.data
-      })
-      this.setCourseInfo(res.result.data)
-      // console.log(res.result.data);
     })
+    this.setData({
+      semesterAndCourseData:res.result.data
+    })
+    this.setCourseInfo(res.result.data)
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
+   onLoad(options) {
     this.storeBindings = createStoreBindings(this,{
       store,
       fields: ['role'],
@@ -97,35 +95,42 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {
+  async onShow() {
     // 每次回到页面重新获取用户数据
-    wx.cloud.callFunction({
+    const userRes = await wx.cloud.callFunction({
       name:'createUser',
       data:{
         avatarUrl:defaultAvatarUrl,
         role:this.data.role,
         uname:'默认用户名'
       }
-    }).then(res=>{
-      // 如果用户已存在数据库则返回用户信息userInfo
-      const flag = res.result.userInfo
-      if(flag) {
-        const {uname,role,avatarUrl} = res.result.userInfo.data[0]
-        this.setData({
-          username:uname,
-          avatarUrl,
-          role
-        })
-      }
-      // 将用户信息存储到Mobx中便于后续使用
-      this.setUserInfo({
-        uname:this.data.username,
-        avatarUrl:this.data.avatarUrl,
-        role:this.data.role
+    })
+    // 如果用户已存在数据库则返回用户信息userInfo
+    const flag = userRes.result.userInfo
+    if(flag) {
+      const {uname,role,avatarUrl} = userRes.result.userInfo.data[0]
+      this.setData({
+        username:uname,
+        avatarUrl,
+        role
       })
-    })    
+    }
+    // 将用户信息存储到Mobx中便于后续使用
+    this.setUserInfo({
+      uname:this.data.username,
+      avatarUrl:this.data.avatarUrl,
+      role:this.data.role
+    })
     //获取当前用户的课程信息
     this._getCourseInfo()
+    // 获取签到记录
+    const teaSignRecordRes = await wx.cloud.callFunction({
+      name:'getSignInRecord'
+    })
+    const teaSignRecord = teaSignRecordRes.result.data
+    this.setData({
+      teaSignRecord
+    })
   },
 
   /**

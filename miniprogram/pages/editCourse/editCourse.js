@@ -31,7 +31,7 @@ Page({
   onClose() {
     this.setData({ showDayPopup: false });
   },
-  addCourseInfo() {
+  async editCourseInfo() {
     if(!this.data.section||!this.data.lastForWeek||!this.data.whichDay||!this.data.classroom){
       wx.showToast({
         title: '输入不能为空',
@@ -42,7 +42,7 @@ Page({
     const section = this.data.section.split('-')
     // console.log(lastForWeek);
     // console.log(section);
-    wx.cloud.callFunction({
+    const res = wx.cloud.callFunction({
       name:'addCourseInfo',
       data:{
         _id:this.data._id,
@@ -52,18 +52,19 @@ Page({
         dayOfWeek:this.data.whichDay,
         classroom:this.data.classroom
       }
-    }).then(res=>{
+    })
+    wx.showToast({
+      title: '操作成功'
+    })
+    setTimeout(()=>{
+      wx.navigateBack()
       this.setData({
         whichDay:'',
         section:'',
         lastForWeek:'',
         classroom:''
       })
-      wx.navigateBack()
-      wx.showToast({
-        title: '添加成功'
-      })
-    })
+    },1000)
   },
   /**
    * 生命周期函数--监听页面加载

@@ -35,7 +35,7 @@
     cancel-text="取消"
   />
 
-<view class="my-container" wx:if="{{role==='teacher'}}">
+<view class="my-container" wx:if="{{userInfo.role==='teacher'}}">
   <view class="form">
     <van-cell value-class="cellValueStyle" title="学期" is-link value="{{semester.name}}" bind:tap="onShowSemesterChoice"/>
     <van-cell value-class="cellValueStyle" title="课程" is-link value="{{course.name}}" bind:tap="onShowCourseChoice"/>

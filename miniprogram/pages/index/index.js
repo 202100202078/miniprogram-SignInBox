@@ -297,7 +297,7 @@ Page({
   onLoad(options) {
     this.storeBindings = createStoreBindings(this,{
       store,
-      fields: ['userInfo','role'],
+      fields: ['userInfo'],
       actions: []
     })
     wx.cloud.callFunction({
@@ -317,11 +317,9 @@ Page({
     wx.setNavigationBarTitle({
       title: '首页',
     })
-    // console.log(this.data.role);
     this.setData({
-      isTeacher:this.data.role==='teacher'
+      isTeacher:this.data.userInfo.role==='teacher'
     })
-    // console.log(this.data.isTeacher);
   },
 
   /**

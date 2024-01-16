@@ -47,7 +47,7 @@
     </van-cell-group>
   </view>
   <view class="btn">
-    <van-button type="info" size="large" round bind:tap="addCourseInfo">修改课程信息</van-button>  
+    <van-button type="info" size="large" round bind:tap="editCourseInfo">修改课程信息</van-button>  
   </view>
 </view>
 
