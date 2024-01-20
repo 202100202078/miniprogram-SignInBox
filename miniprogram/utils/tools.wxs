@@ -1,0 +1,14 @@
+function getDateFromCreateTime(createtime) {
+  var temp = createtime.split(' ')
+  return temp[0]
+}
+
+function getTimeFromCreateTime(createtime) {
+  var temp = createtime.split(' ')
+  return temp[1]
+}
+
+module.exports = {
+  getDateFromCreateTime:getDateFromCreateTime,
+  getTimeFromCreateTime:getTimeFromCreateTime
+}

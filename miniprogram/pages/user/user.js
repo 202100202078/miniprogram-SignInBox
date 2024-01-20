@@ -72,31 +72,34 @@ Page({
     })
     this.setCourseInfo(res.result.data)
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-   onLoad(options) {
-    this.storeBindings = createStoreBindings(this,{
-      store,
-      fields: ['role'],
-      actions: ['setAvatarUrl','setUname','setUserInfo','setCourseInfo'],
+  async _getTeaRecord() {
+    const teaSignRecordRes = await wx.cloud.callFunction({
+      name:'getSignInRecord'
+    })
+    const teaSignRecord = teaSignRecordRes.result.data
+    // console.log(teaSignRecord);
+    for(let i=0;i<teaSignRecord.length;i++){
+      const res = await wx.cloud.callFunction({
+        name:'getCourse',
+        data:{
+          semesterId:teaSignRecord.semesterId,
+          courseId:+teaSignRecord.courseId
+        }
+      })
+      const courseInfo = res.result.data[0].courses[0]
+      teaSignRecord[i].classroom = courseInfo.classroom
+      teaSignRecord[i].courseName = courseInfo.courseName
+      teaSignRecord[i].dayOfWeek = courseInfo.dayOfWeek
+      teaSignRecord[i].lastForWeek = courseInfo.lastForWeek
+      teaSignRecord[i].section = courseInfo.section
+      teaSignRecord[i].tname = courseInfo.tname
+    }
+
+    this.setData({
+      teaSignRecord
     })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-    wx.setNavigationBarTitle({
-      title: '我的',
-    })
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  async onShow() {
-    // 每次回到页面重新获取用户数据
+  async _getUserInfo() {
     const userRes = await wx.cloud.callFunction({
       name:'createUser',
       data:{
@@ -121,16 +124,39 @@ Page({
       avatarUrl:this.data.avatarUrl,
       role:this.data.role
     })
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad(options) {
+    this.storeBindings = createStoreBindings(this,{
+      store,
+      fields: ['role'],
+      actions: ['setAvatarUrl','setUname','setUserInfo','setCourseInfo'],
+    })
+    this._getTeaRecord()
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady() {
+    wx.setNavigationBarTitle({
+      title: '我的',
+    })
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  async onShow() {
+    // 每次回到页面重新获取用户数据
+    this._getUserInfo()
     //获取当前用户的课程信息
     this._getCourseInfo()
-    // 获取签到记录
-    const teaSignRecordRes = await wx.cloud.callFunction({
-      name:'getSignInRecord'
-    })
-    const teaSignRecord = teaSignRecordRes.result.data
-    this.setData({
-      teaSignRecord
-    })
+    // 获取sigin表记录
+    if(this.data.role!=='teacher')return
+    this._getTeaRecord()
   },
 
   /**

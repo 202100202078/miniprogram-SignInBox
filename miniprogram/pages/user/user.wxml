@@ -1,4 +1,6 @@
 <!-- pages/user/user.wxml -->
+<wxs src="../../utils/tools.wxs" module="tools"/>
+
 <view class="userinfo">
   <button class="avatar-btn" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
     <van-image
@@ -28,32 +30,60 @@
   <van-button color="#7232dd" plain="{{isShowCourse}}" custom-style="{{btnStyleObj}}" bind:tap="triggle" data-choice="record">记录</van-button>
 </view>
 <view class="cellList">
-  <view class="semesterItem" wx:for="{{semesterAndCourseData}}" wx:key="_id" wx:for-item="semester">
-      <view class="semesterName">{{semester.semesterName}}</view>
-      <block wx:for="{{semester.courses}}" wx:for-item="course" wx:key="courseId">
-        <view class="cell" bind:tap="showDetail" data-course="{{course}}" data-semesterId="{{semester._id}}">
+  <block wx:if="{{isShowCourse}}" >
+    <view class="semesterItem" wx:for="{{semesterAndCourseData}}" wx:key="_id" wx:for-item="semester">
+        <view class="semesterName">{{semester.semesterName}}</view>
+        <block wx:for="{{semester.courses}}" wx:for-item="course" wx:key="courseId">
+          <view class="cell" bind:tap="showDetail" data-course="{{course}}" data-semesterId="{{semester._id}}">
+            <view class="left">
+              <view class="title">{{course.courseName}}</view>
+              <view class="label">
+                <view class="info">第{{course.lastForWeek.start}}-{{course.lastForWeek.end}}周|{{course.dayOfWeek}}|第{{course.section.start}}-{{course.section.end}}节</view>
+                <view class="info">{{course.tname}}|{{course.classroom||'未定义'}}</view>
+              </view>
+            </view>
+            <view class="right" hidden="{{isShowCourse}}"> 
+              <block wx:if="{{role==='student'}}">
+                <view class="date-stu">2023/12/11</view>
+                <view class="time-stu">20:47:33</view>
+                <view class="info-stu">出勤</view>
+              </block>
+              <block wx:else>
+                <view class="date-tea">2023/12/11</view>
+                <view class="time-tea">20:47:33</view>
+                <view class="info1-tea">出勤：10人</view>
+                <view class="info2-tea">缺勤：5人</view>
+              </block>
+            </view>
+            <view class="right" hidden="{{!isShowCourse}}">
+              <van-icon name="arrow" />
+            </view>
+          </view>
+        </block>
+    </view>
+  </block>
+  <view wx:elif="{{!isShowCourse}}" class="recordList">
+    <block wx:for="{{teaSignRecord}}" wx:for-item="record" wx:key="_id">
+        <view class="cell" bind:tap="showDetail" data-course="{{course}}" data-semesterId="{{record.semesterId}}">
           <view class="left">
-            <view class="title">{{course.courseName}}</view>
+            <view class="title">{{record.courseName}}</view>
             <view class="label">
-              <view class="info">第{{course.lastForWeek.start}}-{{course.lastForWeek.end}}周|{{course.dayOfWeek}}|第{{course.section.start}}-{{course.section.end}}节</view>
-              <view class="info">{{course.tname}}|{{course.classroom||'未定义'}}</view>
+              <view class="info">第{{record.lastForWeek.start}}-{{record.lastForWeek.end}}周|{{record.dayOfWeek}}|第{{record.section.start}}-{{record.section.end}}节</view>
+              <view class="info">{{record.tname}}|{{record.classroom||'未定义'}}</view>
             </view>
           </view>
           <view class="right" hidden="{{isShowCourse}}"> 
             <block wx:if="{{role==='student'}}">
-              <view class="date-stu">2023/12/11</view>
-              <view class="time-stu">20:47:33</view>
+              <view class="date-stu">{{tools.getDateFromCreateTime(record.createTime)}}</view>
+              <view class="time-stu">{{tools.getTimeFromCreateTime(record.createTime)}}</view>
               <view class="info-stu">出勤</view>
             </block>
             <block wx:else>
-              <view class="date-tea">2023/12/11</view>
-              <view class="time-tea">20:47:33</view>
-              <view class="info1-tea">出勤：10人</view>
-              <view class="info2-tea">缺勤：5人</view>
+              <view class="date-tea">{{tools.getDateFromCreateTime(record.createTime)}}</view>
+              <view class="time-tea">{{tools.getTimeFromCreateTime(record.createTime)}}</view>
+              <view class="info1-tea">出勤：{{record.attendNum}}人</view>
+              <view class="info2-tea">缺勤：{{record.absenceNum}}人</view>
             </block>
-          </view>
-          <view class="right" hidden="{{!isShowCourse}}">
-            <van-icon name="arrow" />
           </view>
         </view>
       </block>
