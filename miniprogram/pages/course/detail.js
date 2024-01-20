@@ -5,15 +5,34 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isTeacher:false
-
+    signInCode:'',
+    semesterId:'',
+    courseId:'',
+    stuInfoList:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
-
+  async onLoad(options) {
+    this.setData({
+      signInCode:options.signincode,
+      semesterId:options.semesterid,
+      courseId:options.courseId
+    })
+    // console.log(options);
+    //查询选课表获取当前课程所有学生信息List
+    const stuInfoListRes = await wx.cloud.callFunction({
+      name:'getStuMemberNameList',
+      data:{
+        semesterId: options.semesterid,
+        courseId:+options.courseId,
+        signInCode:options.signincode
+      }
+    })
+    this.setData({
+      stuInfoList:stuInfoListRes.result.list
+    })
   },
 
   /**

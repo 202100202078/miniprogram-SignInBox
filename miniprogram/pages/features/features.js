@@ -79,13 +79,27 @@ Page({
       },
     ],
   },
+  _getDate() {
+    let myDate = new Date()
+    const year =myDate.getFullYear()
+    const month = myDate.getMonth()+1
+    const day = myDate.getDate()
+    const dayOfWeek = myDate.getDay()
+    const hours = myDate.getHours()
+    const minutes = myDate.getMinutes() 
+    const tempDate = `${year}-${month<10?'0'+month:month}-${day<10?'0'+day:day} ${hours<10?'0'+hours:hours}:${minutes<10?'0'+minutes:minutes} 星期${['日','一','二','三','四','五','六'][dayOfWeek]}`
+    return tempDate
+  },
   async onConfirmStuSignInWithCode() {
     if(this.data.signInStuInputCode==='')return
+    const createTime = this._getDate()
     //学生端发起签到
     const res = await wx.cloud.callFunction({
       name:'stuSignInWithCode',
       data:{
-        signInCode:this.data.signInStuInputCode
+        signInCode:this.data.signInStuInputCode,
+        createTime,
+        status:1
       }
     })
     Notify({ type: 'primary', message: res.result.msg?res.result.msg:'签到成功' ,duration:1000});

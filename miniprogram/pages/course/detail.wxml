@@ -1,20 +1,21 @@
-<view class="cellList">
-  <view class="cell" wx:for="{{2}}" wx:key="index">
-    <view class="left">
-      汤姆逊
+<wxs src="../../utils/tools.wxs" module="tools"/>
+
+<block wx:if="{{tools.getArrLength(stuInfoList)!==0}}">
+  <view class="cellList">
+    <view class="cell" wx:for="{{stuInfoList}}" wx:key="_id">
+      <view class="left">
+        {{item.uname}}
+      </view>
+      <view class="right">
+        <block>
+          <view class="date-stu">{{tools.getDateFromCreateTime(item.createTime)}}</view>
+          <view class="time-stu">{{tools.getTimeFromCreateTime(item.createTime)}}</view>
+          <view class="info-stu">{{item.status===1?'出勤':'缺勤'}}</view>
+        </block>
+      </view>
     </view>
-    <view class="right" hidden="{{isShowCourse}}">
-      <block wx:if="{{!isTeacher}}">
-        <view class="date-stu">2023/12/11</view>
-        <view class="time-stu">20:47:33</view>
-        <view class="info-stu">出勤</view>
-      </block>
-      <block wx:else>
-        <view class="date-tea">2023/12/11</view>
-        <view class="time-tea">20:47:33</view>
-        <view class="info1-tea">出勤：10人</view>
-        <view class="info2-tea">缺勤：5人</view>
-      </block>
-    </view>
-  </view>
-</view>
+  </view>  
+</block>
+<block wx:else>
+  <van-empty image="error" description="该次签到记录为空~" />
+</block>

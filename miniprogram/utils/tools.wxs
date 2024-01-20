@@ -8,7 +8,12 @@ function getTimeFromCreateTime(createtime) {
   return temp[1]
 }
 
+function getArrLength(arr) {
+  return arr.length
+}
+
 module.exports = {
   getDateFromCreateTime:getDateFromCreateTime,
-  getTimeFromCreateTime:getTimeFromCreateTime
+  getTimeFromCreateTime:getTimeFromCreateTime,
+  getArrLength:getArrLength
 }

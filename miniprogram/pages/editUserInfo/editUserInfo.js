@@ -12,7 +12,8 @@ Page({
    */
   data: {
     uname: '默认用户名',
-    avatarUrl: defaultAvatarUrl
+    avatarUrl: defaultAvatarUrl,
+    role:'teacher'
   },
   onChooseAvatar(e) {
     // console.log(e.detail);
@@ -26,12 +27,14 @@ Page({
       Notify('用户名不能为空');
       return
     }
+    console.log(this.data.role);
     // 修改对应用户数据库数据
     const res = wx.cloud.callFunction({
       name: 'editUserInfo',
       data:{
         avatarUrl:this.data.avatarUrl,
-        uname:this.data.uname
+        uname:this.data.uname,
+        role:this.data.role
       }
     })
     wx.showToast({
@@ -53,7 +56,8 @@ Page({
     // console.log(options);
     this.setData({
       uname:options.uname,
-      avatarUrl:options.avatarUrl
+      avatarUrl:options.avatarUrl,
+      role:options.role
     })
   },
   

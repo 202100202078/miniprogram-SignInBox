@@ -21,7 +21,8 @@ Page({
       font-size: 48rpx;`,
     isShowCourse: false,
     isTeacher:true,
-    openid:''
+    openid:'',
+    role:'teacher'
   },
   triggle(e) {
     const choice = e.target.dataset.choice
@@ -37,13 +38,13 @@ Page({
   },
   showDetail(e) {
     if(!this.data.isTeacher) return;
-    // 携带当前课程id作为参数进入detail页面
     const obj = e.target.dataset
-    // console.log(e.target.dataset);
     const course = obj.course
+    // console.log(e.target.dataset);
     if(!this.data.isShowCourse) {
+      // 携带当前签到码作为参数进入detail页面
       wx.navigateTo({
-        url: `/pages/course/detail`,
+        url: `/pages/course/detail?signincode=${obj.signincode}&semesterid=${obj.semesterid}&courseId=${+obj.courseid}`,
       })
     }else {
       wx.navigateTo({
@@ -60,6 +61,7 @@ Page({
       name: 'editUserInfo',
       data:{
         avatarUrl:this.data.avatarUrl,
+        role:this.data.role
       }
     })
   },
@@ -131,10 +133,13 @@ Page({
   onLoad(options) {
     this.storeBindings = createStoreBindings(this,{
       store,
-      fields: ['role'],
-      actions: ['setAvatarUrl','setUname','setUserInfo','setCourseInfo'],
+      fields: ['userInfo'],
+      actions: ['setUserInfo','setCourseInfo'],
     })
-    this._getTeaRecord()
+    this.setData({
+      role:options.role,
+      isTeacher:options.role==='teacher'
+    })
   },
 
   /**

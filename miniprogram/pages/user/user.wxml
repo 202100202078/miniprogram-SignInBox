@@ -18,7 +18,7 @@
       </van-loading>
     </van-image>
   </button>
-  <navigator url='/pages/editUserInfo/editUserInfo?uname={{username}}&avatarUrl={{avatarUrl}}'>
+  <navigator url='/pages/editUserInfo/editUserInfo?uname={{username}}&avatarUrl={{avatarUrl}}&role={{role}}'>
     <view class="right" bind:tap="toEditUserInfo">
       <text class="username">{{username}}</text>
       <van-icon name="edit" size="48rpx"/>
@@ -64,7 +64,7 @@
   </block>
   <view wx:elif="{{!isShowCourse}}" class="recordList">
     <block wx:for="{{teaSignRecord}}" wx:for-item="record" wx:key="_id">
-        <view class="cell" bind:tap="showDetail" data-course="{{course}}" data-semesterId="{{record.semesterId}}">
+        <view class="cell" bind:tap="showDetail" data-course="{{course}}" data-semesterId="{{record.semesterId}}" data-courseId="{{record.courseId}}" data-signInCode="{{record.signInCode}}">
           <view class="left">
             <view class="title">{{record.courseName}}</view>
             <view class="label">
@@ -88,4 +88,4 @@
         </view>
       </block>
   </view>
-</view>
+</view> 

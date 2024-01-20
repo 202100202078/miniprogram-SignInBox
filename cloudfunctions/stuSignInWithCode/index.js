@@ -63,7 +63,9 @@ exports.main = async (event, context) => {
     return await db.collection('signin_application').add({
       data:{
         stuId:wxContext.OPENID,
-        signInCode:event.signInCode
+        signInCode:event.signInCode,
+        status:event.status,
+        createTime:event.createTime
       }
     })
   }catch(e) {

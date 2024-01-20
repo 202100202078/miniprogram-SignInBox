@@ -1,7 +1,6 @@
 import {observable,action} from 'mobx-miniprogram'
 
 export const store = observable({
-  userInfo:{},
   uname:'',
   avatarUrl:'',
   role: '',
@@ -36,6 +35,6 @@ export const store = observable({
     console.log(this.role);
   }),
   updateRole:action(function(myRole){
-    this.role = myRole
+    this.userInfo.role = myRole
   })
 })

@@ -13,9 +13,10 @@ exports.main = async (event, context) => {
   const db = cloud.database()
   const wxContext = cloud.getWXContext()
   const arr = await db.collection('user').where({
-    userId: wxContext.OPENID
-  }).limit(MAX_LIMIT).get()
-  const hasUser = arr.data.length === 1
+    userId: wxContext.OPENID,
+    role:event.role
+  }).get()
+  const hasUser = arr.data.length !== 0
   //用户是否已存在
   if(hasUser) {
     // 有则获取对应数据库记录进行渲染

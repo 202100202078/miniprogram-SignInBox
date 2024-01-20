@@ -9,17 +9,10 @@ exports.main = async (event, context) => {
   const db = cloud.database()
 
   try {
-    return await db.collection('user').where({
-      userId: wxContext.OPENID,
-      role:event.role
-    })
-    .update({
-      data: {// 更新用户名和头像
-        avatarUrl: event.avatarUrl,
-        uname:event.uname
-      },
-    })
-  } catch(e) {
-    console.error(e)
+    return await db.collection('signin_application').where({
+      signInCode:event.signInCode
+    }).get()
+  }catch(e) {
+    console.log(e);
   }
 }
