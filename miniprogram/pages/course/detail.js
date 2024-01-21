@@ -27,11 +27,12 @@ Page({
       data:{
         semesterId: options.semesterid,
         courseId:+options.courseId,
-        signInCode:options.signincode
+        signInCode:this.data.signInCode
       }
     })
+    // console.log(stuInfoListRes);
     this.setData({
-      stuInfoList:stuInfoListRes.result.list
+      stuInfoList:stuInfoListRes.result.res.list
     })
   },
 

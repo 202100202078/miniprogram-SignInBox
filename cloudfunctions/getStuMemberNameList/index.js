@@ -10,41 +10,46 @@ exports.main = async (event, context) => {
   var $ = db.command.aggregate
   // 获取当前班级所有成员的个人信息及其签到情况
   try {
-    return db.collection('courses_application').aggregate()
-      .lookup({
-        from:'user',
-        localField:'stuId',
-        foreignField:'userId',
-        as: 'stuInfo'
-      })
-      .lookup({
-        from:'signin_application',
-        localField:'stuId',
-        foreignField:'stuId',
-        as: 'signInInfo'
-      })
-      .replaceRoot({
-        newRoot: $.mergeObjects([ $.arrayElemAt(['$stuInfo', 0]),$.arrayElemAt(['$signInInfo', 0]), '$$ROOT' ])
-      })
-      .project({
-        stuInfo: 0,
-        signInInfo: 0
-      })
-      .match({
-        semesterId:event.semesterId,
-        courseId:event.courseId,
+    const res = await db.collection('courses_application').aggregate()
+    .lookup({
+      from:'user',
+      localField:'stuId',
+      foreignField:'userId',
+      as: 'stuInfo'
+    })
+    .replaceRoot({
+      newRoot: $.mergeObjects([ $.arrayElemAt(['$stuInfo', 0]), '$$ROOT' ])
+    })
+    .project({
+      stuInfo: 0
+    })
+    .match({
+      semesterId:event.semesterId,
+      courseId:event.courseId
+    })
+    .end({
+      success: function (res) {
+        return res;
+      },
+      fail(error) {
+        return error;
+      }
+    })
+    for(let i = 0;i<res.list.length;i++){
+      res.list[i].status = 0
+      res.list[i].createTime = ''
+      const signInRes = await db.collection('signin_application').where({
+        stuId:res.list[i].stuId,
         signInCode:event.signInCode
-      })
-      .end({
-        success: function (res) {
-          return res;
-        },
-        fail(error) {
-          return error;
-        }
-      })
-      // .then(res => console.log(res))
-      // .catch(err => console.error(err))
+      }).get()
+      if(signInRes.data.length!==0) {
+        res.list[i].createTime = signInRes.data[0].createTime
+        res.list[i].status = 1
+      }
+    }
+    return {
+      res
+    }
   }catch(e) {
     console.log(e);
   } 
