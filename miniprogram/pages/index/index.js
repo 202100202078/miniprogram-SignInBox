@@ -297,16 +297,8 @@ Page({
   onLoad(options) {
     this.storeBindings = createStoreBindings(this,{
       store,
-      fields: ['userInfo'],
+      fields: ['userInfo','semesterAndCourseData'],
       actions: []
-    })
-    wx.cloud.callFunction({
-      name:'getCourseInfo'
-    }).then(res=>{
-      // console.log(res);
-      this.setData({
-        semesterAndCourseData:res.result.data
-      })
     })
   },
 

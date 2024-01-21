@@ -67,12 +67,24 @@ Page({
   },
   async _getCourseInfo() {
     const res = await wx.cloud.callFunction({
-      name:'getCourseInfo'
+      name:'getCourseInfo',
+      data:{
+        role:this.data.role
+      }
     })
+    console.log(res);
+    let semesterAndCourseData = res.result.list||res.result.data||[]
+    if(this.data.role==='student') {
+      for(let i=0;i<semesterAndCourseData.length;i++){
+        semesterAndCourseData[i].courses = semesterAndCourseData[i].courses.filter(item=>{
+          return item.courseId===semesterAndCourseData[i].courseId
+        })
+      }
+    }
     this.setData({
-      semesterAndCourseData:res.result.data
+      semesterAndCourseData:semesterAndCourseData
     })
-    this.setCourseInfo(res.result.data)
+    this.setCourseInfo(semesterAndCourseData)
   },
   async _getTeaRecord() {
     const teaSignRecordRes = await wx.cloud.callFunction({

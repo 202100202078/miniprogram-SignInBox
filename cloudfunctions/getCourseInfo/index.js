@@ -10,13 +10,37 @@ const MAX_LIMIT = 1
 exports.main = async (event, context) => {
   const db = cloud.database();
   const wxContext = cloud.getWXContext()
+  const _ = db.command
+  const $ = db.command.aggregate
+
   try {
-    return await db.collection('courses')
-    .where({
-      'teacherId':wxContext.OPENID
-    })
-    .orderBy('semesterName','desc')
-    .get()
+    if(event.role==='teacher') {
+      return await db.collection('courses')
+      .where({
+        'teacherId':wxContext.OPENID
+      })
+      .orderBy('semesterName','desc')
+      .get()
+    }else if(event.role==='student') {
+      // 只获取当前学生加入的课程
+      return await db.collection('courses_application').aggregate()
+      .lookup({
+        from: "courses",
+        localField: "semesterId",
+        foreignField: "_id",
+        as: "courseInfo"
+      })
+      .replaceRoot({
+        newRoot: $.mergeObjects([ $.arrayElemAt(['$courseInfo', 0]), '$$ROOT' ])
+      })
+      .project({
+        courseInfo: 0
+      })
+      .match({
+        stuId:wxContext.OPENID
+      })
+      .end()
+    }
   }catch(e) {
     console.log(e);
   }
