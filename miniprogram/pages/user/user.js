@@ -72,7 +72,7 @@ Page({
         role:this.data.role
       }
     })
-    console.log(res);
+    // console.log(res);
     let semesterAndCourseData = res.result.list||res.result.data||[]
     if(this.data.role==='student') {
       for(let i=0;i<semesterAndCourseData.length;i++){
@@ -88,8 +88,12 @@ Page({
   },
   async _getTeaRecord() {
     const teaSignRecordRes = await wx.cloud.callFunction({
-      name:'getSignInRecord'
+      name:'getSignInRecord',
+      data:{
+        role:this.data.role
+      }
     })
+    // console.log(teaSignRecordRes);
     const teaSignRecord = teaSignRecordRes.result.data
     // console.log(teaSignRecord);
     for(let i=0;i<teaSignRecord.length;i++){
@@ -172,7 +176,6 @@ Page({
     //获取当前用户的课程信息
     this._getCourseInfo()
     // 获取sigin表记录
-    if(this.data.role!=='teacher')return
     this._getTeaRecord()
   },
 

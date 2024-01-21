@@ -76,7 +76,7 @@
             <block wx:if="{{role==='student'}}">
               <view class="date-stu">{{tools.getDateFromCreateTime(record.createTime)}}</view>
               <view class="time-stu">{{tools.getTimeFromCreateTime(record.createTime)}}</view>
-              <view class="info-stu">出勤</view>
+              <view class="{{record.status===0?'info-stu active':'info-stu'}}">{{record.status===1?'出勤':'缺勤'}}</view>
             </block>
             <block wx:else>
               <view class="date-tea">{{tools.getDateFromCreateTime(record.createTime)}}</view>
