@@ -3,7 +3,7 @@
     <view class="top-show">
       <text class="courseName">{{courseName}}</text>
       <view class="course-info">
-        <text>共0人</text>
+        <text>共{{totalNum}}人</text>
         <text class="second">班级码：</text>
         <text class="code">{{courseCode}}</text>
       </view>
@@ -19,12 +19,23 @@
     </view>
   </view>
   <view class="stu-list-show">
-    <van-empty class="empty-show">
+    <block wx:if="{{stuNameList.length!==0}}">
+      <view class="cellList">
+        <view class="cell" wx:for="{{stuNameList}}" wx:key="_id">
+          <view class="left">
+            {{item.uname}}
+          </view>
+        </view>
+      </view>
+    </block>  
+    <block wx:else>
+      <van-empty class="empty-show">
       <view slot="description">
         <view>当前班级还没有学生</view>
         <view>您可以点击“班级二维码”</view>
         <view>让学生快速扫码加入班级</view>
       </view>
     </van-empty>
+    </block>
   </view>
 </view>
