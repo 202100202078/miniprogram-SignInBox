@@ -93,18 +93,16 @@ Page({
         role:this.data.role
       }
     })
-    // console.log(teaSignRecordRes);
     const teaSignRecord = teaSignRecordRes.result.data
     // console.log(teaSignRecord);
     for(let i=0;i<teaSignRecord.length;i++){
       const res = await wx.cloud.callFunction({
         name:'getCourse',
         data:{
-          semesterId:teaSignRecord.semesterId,
-          courseId:+teaSignRecord.courseId
+          _id:teaSignRecord[i].semesterId
         }
       })
-      const courseInfo = res.result.data[0].courses[0]
+      const courseInfo = res.result.data.courses[+teaSignRecord[i].courseId]
       teaSignRecord[i].classroom = courseInfo.classroom
       teaSignRecord[i].courseName = courseInfo.courseName
       teaSignRecord[i].dayOfWeek = courseInfo.dayOfWeek

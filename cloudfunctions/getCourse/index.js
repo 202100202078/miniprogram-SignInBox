@@ -10,10 +10,7 @@ exports.main = async (event, context) => {
   const idx = event.courseId
   try {
     return await db.collection('courses')
-    .where({
-      _id: event.semesterId,
-      [`courses.${idx}.courseId`]: idx
-    })
+    .doc(event._id)
     .field({
       courses:true
     })

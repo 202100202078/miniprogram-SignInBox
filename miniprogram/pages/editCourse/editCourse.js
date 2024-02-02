@@ -69,30 +69,28 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
+  async onLoad(options) {
     // console.log(options);
     this.setData({
       _id:options._id,
       courseId:options.courseId
     })
     // console.log(typeof +options.courseId);
-    wx.cloud.callFunction({
+    const res = await wx.cloud.callFunction({
       name:'getCourse',
       data: {
-        _id:options._id,
-        courseId:+options.courseId
+        _id:options._id
       }
-    }).then(res=>{
-      const {classroom,courseDesc,courseName,dayOfWeek,lastForWeek,section} = res.result.data.courses[+options.courseId]
-      // console.log(res.result.data.courses[+options.courseId]);
-      this.setData({
-        whichDay:dayOfWeek,
-        classroom,
-        courseDesc,
-        courseName,
-        lastForWeek:lastForWeek.start+'-'+lastForWeek.end,
-        section:section.start+'-'+section.end,
-      })
+    })
+    console.log(res);
+    const {classroom,courseDesc,courseName,dayOfWeek,lastForWeek,section} = res.result.data.courses[+options.courseId]
+    this.setData({
+      whichDay:dayOfWeek,
+      classroom,
+      courseDesc,
+      courseName,
+      lastForWeek:lastForWeek.start+'-'+lastForWeek.end,
+      section:section.start+'-'+section.end,
     })
   },
 

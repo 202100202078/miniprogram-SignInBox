@@ -14,14 +14,67 @@
 
 
 
+## 部分页面展示
 
-# 云开发 quickstart
+### 教师端
 
-这是云开发的快速启动指引，其中演示了如何上手使用云开发的三大基础能力：
+![1265f2632c0356f38479d8f5de211](D:\MyProject\HTMLCSSJavaScript\小程序开发\miniprogram-SignIn\assets/e1265f2632c0356f38479d8f5de2112.png)
 
-- 数据库：一个既可在小程序前端操作，也能在云函数中读写的 JSON 文档型数据库
-- 文件存储：在小程序前端直接上传/下载云端文件，在云开发控制台可视化管理
-- 云函数：在云端运行的代码，微信私有协议天然鉴权，开发者只需编写业务逻辑代码
+![34c92df312d432b61863736ceeaca](D:\MyProject\HTMLCSSJavaScript\小程序开发\miniprogram-SignIn\assets/f34c92df312d432b61863736ceeacaf.png)
+
+![7380baa614be6da2801c9fe32667d](D:\MyProject\HTMLCSSJavaScript\小程序开发\miniprogram-SignIn\assets/c7380baa614be6da2801c9fe32667d8.png)
+
+![684df63df8f0af652456dc80c78aa](D:\MyProject\HTMLCSSJavaScript\小程序开发\miniprogram-SignIn\assets/6684df63df8f0af652456dc80c78aa6.png)
+
+![c4d487f2b5fb57ef1854d469bc46b](D:\MyProject\HTMLCSSJavaScript\小程序开发\miniprogram-SignIn\assets/fc4d487f2b5fb57ef1854d469bc46b6.png)
+
+![a94de71131eeb726a832e038f3bd8](D:\MyProject\HTMLCSSJavaScript\小程序开发\miniprogram-SignIn\assets/6a94de71131eeb726a832e038f3bd8c.png)
+
+![d32221c6a68b4d6e422866b880e4e](D:\MyProject\HTMLCSSJavaScript\小程序开发\miniprogram-SignIn\assets/1d32221c6a68b4d6e422866b880e4e2.png)
+
+![de6e19c3099e9838c8edb0b6b0ee3](D:\MyProject\HTMLCSSJavaScript\小程序开发\miniprogram-SignIn\assets/9de6e19c3099e9838c8edb0b6b0ee3d.png)
+
+
+
+![74afec6c652c08b4fee5e1f2c74f0](D:\MyProject\HTMLCSSJavaScript\小程序开发\miniprogram-SignIn\assets/e74afec6c652c08b4fee5e1f2c74f02.png)
+
+![05d52d4ef2e3349f314c31f0cdf50](D:\MyProject\HTMLCSSJavaScript\小程序开发\miniprogram-SignIn\assets/e05d52d4ef2e3349f314c31f0cdf503.png)
+
+
+
+### 学生端
+
+![f7f4e43ceef480e41c11bec6e83f9](D:\MyProject\HTMLCSSJavaScript\小程序开发\miniprogram-SignIn\assets/5f7f4e43ceef480e41c11bec6e83f99.png)
+
+
+
+![64d3c4261d35aa867199a8c3dea1b](D:\MyProject\HTMLCSSJavaScript\小程序开发\miniprogram-SignIn\assets/a2ef4d821fef2e84a829a30513d44c5.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## 参考文档
 
